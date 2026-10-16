@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PixelForge — Bespoke Websites, Master Pitch Decks & Software</title>
+  <meta name="description" content="PixelForge is a studio of young creators led by Krushnrajsinh Chudasama, Rishi, and Yuvi. We engineer bespoke websites, high-stakes PowerPoint presentations, and shipped security software with live interactive demos." />
+  <meta name="author" content="Krushnrajsinh Chudasama, PixelForge" />
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:title" content="PixelForge — Real Deliverables, Real Demos" />
+  <meta property="og:description" content="Bespoke websites, high-stakes PowerPoint decks, and shipped security tools. Try Sentinel Shield, the Cyber Shield deck, and JARVIS live." />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <link rel="stylesheet" href="./assets/css/components.css" />
+</head>
+<body>
+
+  <!-- Background Interactive Square Grid Canvas -->
+  <canvas id="grid-canvas" aria-hidden="true"></canvas>
+  <div class="canvas-backdrop" aria-hidden="true"></div>
+
+  <!-- Scroll Progress Indicator -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement">
+    <span><span class="status-dot-pulse"></span> <b>PixelForge Studio</b> • Available for Q4 / 2026 Projects</span>
+    <span style="opacity: 0.35;">|</span>
+    <span>India • Worldwide Remote Handover</span>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header id="main-header">
+    <div class="header-container">
+      <!-- Brand Wordmark -->
+      <a href="#home" class="brand-link" aria-label="PixelForge Home">
+        <div class="brand-icon">✦</div>
+        <div>
+          <div class="brand-title">PixelForge<span style="color: var(--accent-blue);">.</span></div>
+          <div class="brand-tagline">Young Creators Crew</div>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="#work" class="nav-link">Our Work</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#presentations" class="nav-link">Presentations</a>
+        <a href="#web-engineering" class="nav-link">Web Engineering</a>
+        <a href="#estimator" class="nav-link">Scope Estimator</a>
+        <a href="#team" class="nav-link">The Crew</a>
+        <a href="#achievements" class="nav-link">Honors</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#portal" class="nav-link">Member Circle</a>
+      </nav>
+
+      <!-- Header CTA Action -->
+      <div class="header-actions">
+        <a href="#contact" class="btn btn-primary btn-sm">
+          <span>Let's Talk</span>
+          <span>→</span>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="mobile-toggle" id="mobile-menu-toggle" aria-label="Toggle Navigation" aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-drawer" id="mobile-nav">
+      <a href="#work"><span>Our Work & Demos</span> <span>→</span></a>
+      <a href="#services"><span>Services Overview</span> <span>→</span></a>
+      <a href="#presentations"><span>Presentation Studio</span> <span>→</span></a>
+      <a href="#web-engineering"><span>Web Engineering</span> <span>→</span></a>
+      <a href="#estimator"><span>Scope & Cost Estimator</span> <span>→</span></a>
+      <a href="#team"><span>The PixelForge Crew</span> <span>→</span></a>
+      <a href="#achievements"><span>Honors & Track Record</span> <span>→</span></a>
+      <a href="#about"><span>About & Philosophy</span> <span>→</span></a>
+      <a href="#portal"><span>Member Circle</span> <span>→</span></a>
+      <a href="#contact" style="color: var(--accent-blue); font-weight: 700;"><span>Contact The Crew</span> <span>⚡</span></a>
+    </div>
+  </header>
+
+  <!-- Main Website Content -->
+  <main id="home">
+
+    <!-- ============================================================
+         1. HERO SECTION
+         ============================================================ -->
+    <section class="hero-section container">
+      <div class="hero-kicker-wrap">
+        <div class="section-badge">
+          <span class="status-dot-pulse"></span>
+          <span>PIXELFORGE • A TRIO OF YOUNG MAKERS</span>
+          <span style="opacity: 0.35; margin: 0 4px;">•</span>
+          <span style="color: var(--text-secondary);">Real Products & Shipped Code</span>
+        </div>
+      </div>
+
+      <h1 class="hero-headline">
+        Designing ideas.
+        <span class="highlight-gradient" style="display: block;">Building real things.</span>
+      </h1>
+
+      <p class="hero-subtext">
+        PixelForge is a team of young creators led by <strong>Krushnrajsinh Chudasama</strong> (Co-Founder & Chief Website Developer, age 15) alongside <strong>Rishi</strong> and <strong>Yuvi</strong>. We design executive presentations, build modern websites, and ship real security software — like Sentinel Shield, which you can run live right here.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#work" class="btn btn-primary">
+          <span>Explore Shipped Work</span>
+          <span>↓</span>
+        </a>
+        <a href="#contact" class="btn btn-secondary">
+          <span>Direct Contact With The Crew</span>
+          <span>→</span>
+        </a>
+      </div>
+
+      <!-- Quick Proof Metrics Bar -->
+      <div class="hero-stats-row">
+        <div class="hero-stat-item">
+          <b>4</b>
+          <span>Live Interactive Demos Included</span>
+        </div>
+        <div class="hero-stat-item">
+          <b>100%</b>
+          <span>Shipped Source & Master Files</span>
+        </div>
+        <div class="hero-stat-item">
+          <b>Zero</b>
+          <span>AI Templates or Placeholder Fakes</span>
+        </div>
+        <div class="hero-stat-item">
+          <b>12-24h</b>
+          <span>Guaranteed Direct Reply</span>
+        </div>
+      </div>
+
+      <!-- Three Pillars Feature Cards -->
+      <div class="hero-cards-grid">
+        <!-- Card 1: Websites & Software -->
+        <div class="hero-feature-card">
+          <div class="hero-feature-icon icon-blue">💻</div>
+          <div class="hero-feature-meta" style="color: var(--accent-blue);">Discipline 01</div>
+          <h3 class="hero-feature-title">Website & Software Development</h3>
+          <p class="hero-feature-desc">
+            Led by Krushnrajsinh — bespoke React and TypeScript frontends, micro-interactions, responsive architectures, and full production repository handovers.
+          </p>
+        </div>
+
+        <!-- Card 2: Presentation Design -->
+        <div class="hero-feature-card">
+          <div class="hero-feature-icon icon-amber">📊</div>
+          <div class="hero-feature-meta" style="color: var(--accent-amber);">Discipline 02</div>
+          <h3 class="hero-feature-title">PowerPoint Presentation Design</h3>
+          <p class="hero-feature-desc">
+            Crafted by Rishi and Yuvi, with Krushnrajsinh backing the master slide narrative. Investor pitch decks, academic symposiums, and data visualization.
+          </p>
+        </div>
+
+        <!-- Card 3: Track Record & Honors -->
+        <div class="hero-feature-card">
+          <div class="hero-feature-icon icon-emerald">🏆</div>
+          <div class="hero-feature-meta" style="color: var(--accent-emerald);">Distinctions</div>
+          <h3 class="hero-feature-title">Robotics Winner & MUN Delegate</h3>
+          <p class="hero-feature-desc">
+            WSRO Regional Champion (World STEM & Robotics Olympiad), Sahodaya Parliamentary Debate distinction, and high-stakes Model United Nations diplomacy.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         2. WORK & SHIPPED DEMOS SECTION
+         ============================================================ -->
+    <section id="work" class="section-wrapper section-divider container">
+      <div class="section-badge emerald">
+        <span>REAL SHIPPED WORK • LIVE INTERACTIVE DEMOS</span>
+      </div>
+
+      <h2 class="section-title">Built by us. Running for real.</h2>
+      <p class="section-lead">
+        No stock mockups or render fluff. Every single project below is something we actually engineered and shipped — click <strong>"Run Live Demo"</strong> to test the full working software or presentation in your browser right now.
+      </p>
+
+      <!-- Category Filter Pills -->
+      <div class="filter-pills-row">
+        <button class="filter-pill active" data-filter="all">All Shipped Work (4)</button>
+        <button class="filter-pill" data-filter="web">Web & Security Software (3)</button>
+        <button class="filter-pill" data-filter="presentation">PowerPoint Decks (1)</button>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="projects-grid">
+
+        <!-- Project 1: Sentinel Shield -->
+        <div class="project-card" data-category="web">
+          <div>
+            <div class="project-preview-box">
+              <div class="project-preview-top">
+                <span class="project-badge-pill" style="color: var(--accent-emerald); border-color: rgba(5, 150, 105, 0.25);">
+                  🛡️ Live Product UI Demo
+                </span>
+                <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">sentinel-shield.app</span>
+              </div>
+              <div>
+                <h3 class="project-card-title">Sentinel Shield • Cyber Safety Platform</h3>
+                <div class="project-tags-line">Cybersecurity • Local Heuristic • Chrome Extension • Single-File App</div>
+              </div>
+            </div>
+
+            <p class="project-card-desc">
+              Our complete cyber-safety workspace: real-time phishing link scanning, local password strength analysis, an on-device "Ask Sentinel" assistant, and an integrated Manifest V3 Chrome extension hub. The demo launches the real shipped code.
+            </p>
+
+            <div class="project-features-list">
+              <span class="project-feature-tag">Website Phishing Scanner</span>
+              <span class="project-feature-tag">Offline Password Analyzer</span>
+              <span class="project-feature-tag">Ask Sentinel AI</span>
+              <span class="project-feature-tag">Chrome Extension Hub</span>
+            </div>
+          </div>
+
+          <div class="project-actions-row">
+            <button class="btn btn-primary btn-sm" data-demo-url="./demos/sentinel-shield.html" data-demo-title="Sentinel Shield — Cybersecurity Workspace" data-demo-mode="modal">
+              <span>Run Live Demo</span>
+              <span>↗</span>
+            </button>
+            <a href="./demos/sentinel-shield.html" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              <span>Open in New Tab</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 2: Welcome to Cyber Shield Deck -->
+        <div class="project-card" data-category="presentation">
+          <div>
+            <div class="project-preview-box">
+              <div class="project-preview-top">
+                <span class="project-badge-pill" style="color: var(--accent-amber); border-color: rgba(234, 88, 12, 0.25);">
+                  📊 Live Deck Demo (10 Slides)
+                </span>
+                <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">Master_Deck.pptx</span>
+              </div>
+              <div>
+                <h3 class="project-card-title">Welcome to Cyber Shield • Master Deck</h3>
+                <div class="project-tags-line">PowerPoint (.PPTX) • Real Master Deck • Threat Modeling • Slide Hierarchy</div>
+              </div>
+            </div>
+
+            <p class="project-card-desc">
+              The real, 10-slide master presentation engineered for our Cyber Shield platform — detailing website trust challenges, layered detection signals, password security, AI guidance, and the modular system architecture.
+            </p>
+
+            <div class="project-features-list">
+              <span class="project-feature-tag">10 Real Interactive Slides</span>
+              <span class="project-feature-tag">Risk Verdict Narrative</span>
+              <span class="project-feature-tag">Dark Cinematic Aesthetic</span>
+              <span class="project-feature-tag">Editable .pptx Source</span>
+            </div>
+          </div>
+
+          <div class="project-actions-row">
+            <button class="btn btn-primary btn-sm" data-demo-url="./demos/cyber-shield-deck.html" data-demo-title="Cyber Shield — 10-Slide Master Deck Demo" data-demo-mode="modal">
+              <span>Play Live Deck</span>
+              <span>↗</span>
+            </button>
+            <a href="./demos/cyber-shield-deck.html" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              <span>Open in New Tab</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 3: JARVIS v7 -->
+        <div class="project-card" data-category="web">
+          <div>
+            <div class="project-preview-box">
+              <div class="project-preview-top">
+                <span class="project-badge-pill" style="color: var(--accent-blue); border-color: rgba(37, 99, 235, 0.25);">
+                  🖥️ Software Source Demo
+                </span>
+                <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">jarvis_v7.py</span>
+              </div>
+              <div>
+                <h3 class="project-card-title">JARVIS v7 • Touchless 3D Visualization</h3>
+                <div class="project-tags-line">OpenGL • MediaPipe • Python • Gesture Control • Chemistry Lab</div>
+              </div>
+            </div>
+
+            <p class="project-card-desc">
+              An AI-powered, hand-gesture-driven scientific visualization platform: real OpenGL 3D rendering, MediaPipe hand & face tracking, holographic HUD, exploded anatomical & molecular views, virtual chemistry lab, and conversational voice brain.
+            </p>
+
+            <div class="project-features-list">
+              <span class="project-feature-tag">Gesture Control + Dwell Select</span>
+              <span class="project-feature-tag">Real 3D OpenGL Core</span>
+              <span class="project-feature-tag">Virtual Chemistry Lab</span>
+              <span class="project-feature-tag">Zero Paid API Costs</span>
+            </div>
+          </div>
+
+          <div class="project-actions-row">
+            <button class="btn btn-primary btn-sm" data-demo-url="./demos/jarvis-viewer.html?version=v7" data-demo-title="JARVIS v7 Source Code & Architecture Viewer" data-demo-mode="modal">
+              <span>Inspect Source</span>
+              <span>↗</span>
+            </button>
+            <a href="./demos/jarvis-viewer.html?version=v7" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              <span>Open in New Tab</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 4: JARVIS v8 -->
+        <div class="project-card" data-category="web">
+          <div>
+            <div class="project-preview-box">
+              <div class="project-preview-top">
+                <span class="project-badge-pill" style="color: var(--accent-indigo); border-color: rgba(99, 102, 241, 0.25);">
+                  ⚙️ Software Source Demo
+                </span>
+                <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">jarvis_v8.py</span>
+              </div>
+              <div>
+                <h3 class="project-card-title">JARVIS v8 • Continued Evolution</h3>
+                <div class="project-tags-line">Python • Real-Time Rendering • Side-by-Side Version Diff • Shipped Build</div>
+              </div>
+            </div>
+
+            <p class="project-card-desc">
+              The ongoing evolution of the JARVIS visualization platform — featuring optimized rendering loops, refined gesture tracking matrices, and snapshot versioning compared side-by-side with v7 in the interactive viewer.
+            </p>
+
+            <div class="project-features-list">
+              <span class="project-feature-tag">Proven Render Pipeline</span>
+              <span class="project-feature-tag">Version Comparison</span>
+              <span class="project-feature-tag">Full Python Source</span>
+              <span class="project-feature-tag">Keyboard Fallback</span>
+            </div>
+          </div>
+
+          <div class="project-actions-row">
+            <button class="btn btn-primary btn-sm" data-demo-url="./demos/jarvis-viewer.html?version=v8" data-demo-title="JARVIS v8 Source Code & Architecture Viewer" data-demo-mode="modal">
+              <span>Inspect Source</span>
+              <span>↗</span>
+            </button>
+            <a href="./demos/jarvis-viewer.html?version=v8" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              <span>Open in New Tab</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footnote Guarantee on Demos -->
+      <div style="margin-top: 36px; padding: 18px 24px; border-radius: 12px; background: #ffffff; border: 1px solid var(--border-subtle); font-size: 13.5px; color: var(--text-secondary); line-height: 1.6;">
+        ⚡ <strong>Offline & GitHub Pages Verified:</strong> Every demo file is embedded directly inside <code style="font-family: var(--font-mono); color: var(--accent-blue); background: var(--bg-subtle); padding: 2px 6px; border-radius: 4px;">./demos/</code> within the <code style="font-family: var(--font-mono);">Younglancers</code> repository. They work with zero external server dependencies, without GitHub Actions workflows, and will never 404.
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3. SERVICES OVERVIEW & PRESENTATIONS
+         ============================================================ -->
+    <section id="services" class="section-wrapper section-divider container">
+      <div class="section-badge amber">
+        <span>PRIMARY SERVICE 01 • PRESENTATION DESIGN</span>
+      </div>
+
+      <h2 class="section-title">Complex information.<br />Structured with ruthless clarity.</h2>
+      <p class="section-lead">
+        Rishi and Yuvi craft the presentation decks, backed by Krushnrajsinh’s structural slide expertise. We transform dense research, business plans, and raw statistics into presentations that command attention.
+      </p>
+
+      <div id="presentations" class="deck-showcase-grid">
+        <!-- Interactive Slide Viewer Showcase -->
+        <div class="deck-viewer-frame" id="deck-frame">
+          <div class="deck-toolbar">
+            <div class="mac-dots">
+              <span class="mac-dot dot-red"></span>
+              <span class="mac-dot dot-yellow"></span>
+              <span class="mac-dot dot-green"></span>
+              <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); margin-left: 8px;">
+                Master_Deck_Live_Preview.pptx (16:9 HD)
+              </span>
+            </div>
+            <span id="deck-badge" style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; color: var(--accent-blue);">
+              Editorial Modern
+            </span>
+          </div>
+
+          <div class="deck-slide-content">
+            <div>
+              <div class="deck-kicker" id="deck-kicker">01 / EXECUTIVE INVESTOR PITCH</div>
+              <h3 class="deck-title" id="deck-title">Decentralized Neural Fabric Architecture</h3>
+              <p class="deck-subtitle" id="deck-subtitle">
+                Achieving 2.4x throughput per watt across distributed edge inference clusters.
+              </p>
+            </div>
+
+            <div class="deck-metrics-row" id="deck-metrics">
+              <div class="deck-metric-box">
+                <div class="metric-label">ENERGY EFFICIENCY</div>
+                <div class="metric-val" style="color: var(--accent-blue);">4.8 TFLOPS/W</div>
+              </div>
+              <div class="deck-metric-box">
+                <div class="metric-label">NETWORK LATENCY</div>
+                <div class="metric-val" style="color: var(--accent-blue);">&lt; 0.38 ms</div>
+              </div>
+              <div class="deck-metric-box">
+                <div class="metric-label">CLUSTER PARITY</div>
+                <div class="metric-val" style="color: var(--accent-blue);">99.98%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="deck-controls">
+            <div class="deck-dots-list">
+              <button class="deck-dot active" aria-label="Slide 1"></button>
+              <button class="deck-dot" aria-label="Slide 2"></button>
+              <button class="deck-dot" aria-label="Slide 3"></button>
+            </div>
+            <span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted);">
+              Click dots to preview real slide archetypes
+            </span>
+          </div>
+        </div>
+
+        <!-- Presentation Disciplines & Deliverables -->
+        <div>
+          <div class="service-specs-card">
+            <div class="spec-item-box">
+              <h4>Executive & Investor Pitch Decks</h4>
+              <p>Tailored narratives structured to persuade venture capitalists, institutional partners, and corporate leadership.</p>
+            </div>
+            <div class="spec-item-box">
+              <h4>Academic & Scientific Symposium Slides</h4>
+              <p>Translating dense laboratory research, clinical trial findings, and technical formulas into visually balanced slides.</p>
+            </div>
+            <div class="spec-item-box">
+              <h4>Data Visualization & Custom Metric Systems</h4>
+              <p>Custom comparison tables, timeline graphics, and metric cards that make raw datasets immediately digestible.</p>
+            </div>
+          </div>
+
+          <!-- Included With Every Deck -->
+          <div style="margin-bottom: 28px;">
+            <div style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; color: var(--accent-amber); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px;">
+              Included Deliverables Handover
+            </div>
+            <div style="display: grid; gap: 8px; font-size: 13.5px; color: var(--text-secondary);">
+              <div>✓ Fully editable Microsoft PowerPoint (.pptx) master files</div>
+              <div>✓ Master typography hierarchies & slide master layouts</div>
+              <div>✓ Exported high-resolution PDF presentation decks</div>
+              <div>✓ Light and dark presentation themes upon request</div>
+            </div>
+          </div>
+
+          <a href="#contact" class="btn btn-primary">
+            <span>Commission a Presentation</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. WEB & SOFTWARE ENGINEERING
+         ============================================================ -->
+    <section id="web-engineering" class="section-wrapper section-divider container">
+      <div class="section-badge">
+        <span>PRIMARY SERVICE 02 • WEBSITES & SOFTWARE</span>
+      </div>
+
+      <h2 class="section-title">Websites that feel tangible,<br />lightning-fast & unmistakably human.</h2>
+      <p class="section-lead">
+        Led by Krushnrajsinh, our Chief Website Developer. Thoughtful navigation, precision spacing, smooth canvas animations, and production-tested code behind every build.
+      </p>
+
+      <div class="deck-showcase-grid">
+        <!-- Interactive Browser Mockup Showcase -->
+        <div class="browser-mockup-frame">
+          <div class="browser-top-bar">
+            <div class="mac-dots">
+              <span class="mac-dot dot-red"></span>
+              <span class="mac-dot dot-yellow"></span>
+              <span class="mac-dot dot-green"></span>
+            </div>
+            <div class="browser-url-pill" id="web-view-url">
+              https://sentinel-shield.app
+            </div>
+            <div style="font-size: 13px; color: var(--text-muted);">⚡ 60fps</div>
+          </div>
+
+          <div class="browser-screen-inner">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 12px;">
+              <span style="font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--text-primary);">
+                PixelForge Product Pipeline
+              </span>
+              <span id="web-view-badge" style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-emerald); font-weight: 600;">
+                Shipped Product UI
+              </span>
+            </div>
+
+            <div style="margin: 20px 0;">
+              <h3 id="web-view-tagline" style="font-family: var(--font-display); font-size: clamp(20px, 2.5vw, 26px); color: var(--text-primary); margin-bottom: 10px;">
+                Sentinel Shield — Cybersecurity Workspace
+              </h3>
+              <p id="web-view-desc" style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">
+                Our complete live security tool: real-time phishing detection, local password strength analysis, Ask Sentinel assistant, and Manifest V3 Chrome extension hub.
+              </p>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 12px; margin-top: auto;">
+              <button class="btn btn-primary btn-sm" id="web-view-launch" data-demo-url="./demos/sentinel-shield.html" data-demo-title="Sentinel Shield Demo" data-demo-mode="modal">
+                <span>Test Live In Lightbox</span>
+                <span>↗</span>
+              </button>
+              <span style="font-family: var(--font-mono); font-size: 11.5px; color: var(--text-muted);">
+                Production Verified
+              </span>
+            </div>
+          </div>
+
+          <!-- Web Concept Switcher Tabs -->
+          <div class="web-tab-buttons-row">
+            <button class="web-tab-btn active" data-site="sentinel">Sentinel Shield</button>
+            <button class="web-tab-btn" data-site="jarvis">JARVIS HUD</button>
+            <button class="web-tab-btn" data-site="pixelforge">PixelForge Site</button>
+          </div>
+        </div>
+
+        <!-- Technical Disciplines & Standards -->
+        <div>
+          <div class="service-specs-card">
+            <div class="spec-item-box">
+              <h4>Modern Bespoke Interfaces</h4>
+              <p>Precision layouts crafted from first principles. High-contrast typography, restrained color harmony, and tactile feedback.</p>
+            </div>
+            <div class="spec-item-box">
+              <h4>Smooth Motion & Woven Thread Physics</h4>
+              <p>Lightweight HTML5 Canvas animations, harmonic spring physics, and micro-interactions that engage without lagging devices.</p>
+            </div>
+            <div class="spec-item-box">
+              <h4>Clean, Maintainable Codebase</h4>
+              <p>Clean HTML5, CSS3, TypeScript/ES6 architecture with zero bloated dependencies — ready for instant direct branch deployment on GitHub Pages.</p>
+            </div>
+          </div>
+
+          <!-- Deliverables Handover -->
+          <div style="margin-bottom: 28px;">
+            <div style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px;">
+              Engineering Standards Handover
+            </div>
+            <div style="display: grid; gap: 8px; font-size: 13.5px; color: var(--text-secondary);">
+              <div>✓ Complete production GitHub repository handover</div>
+              <div>✓ Cross-browser verified (Chrome, Safari, Firefox, Edge)</div>
+              <div>✓ Responsive from 320px smartphones to 4K ultra-wide monitors</div>
+              <div>✓ Direct branch GitHub Pages ready with zero 404 errors</div>
+            </div>
+          </div>
+
+          <a href="#contact" class="btn btn-primary">
+            <span>Commission a Website</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. INTERACTIVE SCOPE & ESTIMATOR WIDGET
+         ============================================================ -->
+    <section id="estimator" class="section-wrapper section-divider container">
+      <div class="section-badge">
+        <span>INTERACTIVE ESTIMATOR • COLLABORATION ROADMAP</span>
+      </div>
+
+      <h2 class="section-title">Calculate your project scope.</h2>
+      <p class="section-lead">
+        Select what you need below to see an instant turnaround estimate and included deliverables. When ready, click to pre-fill your brief in the Contact section.
+      </p>
+
+      <div class="estimator-panel">
+        <h3 style="font-family: var(--font-display); font-size: 20px; color: var(--text-primary); margin-bottom: 6px;">
+          Select Desired Project Components:
+        </h3>
+        <p style="font-size: 13.5px; color: var(--text-muted); font-family: var(--font-mono);">
+          Check all that apply to your requirements
+        </p>
+
+        <div class="estimator-options-grid">
+          <label class="estimator-label">
+            <input type="checkbox" class="estimator-check" data-name="Investor Pitch Deck (.pptx)" data-days="3" data-deliverable="Master 10-15 Slide .PPTX Master" checked />
+            <div>
+              <b style="font-size: 14.5px; color: var(--text-primary); display: block;">Investor / Pitch Deck (.pptx)</b>
+              <span style="font-size: 12.5px; color: var(--text-muted);">10-15 slides, narrative structure, data cards</span>
+            </div>
+          </label>
+
+          <label class="estimator-label">
+            <input type="checkbox" class="estimator-check" data-name="Bespoke Website Development" data-days="5" data-deliverable="Full Responsive Website Codebase" checked />
+            <div>
+              <b style="font-size: 14.5px; color: var(--text-primary); display: block;">Bespoke Website Development</b>
+              <span style="font-size: 12.5px; color: var(--text-muted);">Custom design, mobile responsive, zero-build deploy</span>
+            </div>
+          </label>
+
+          <label class="estimator-label">
+            <input type="checkbox" class="estimator-check" data-name="Academic / Symposium Slides" data-days="3" data-deliverable="Academic Slide Deck & High-Res PDF" />
+            <div>
+              <b style="font-size: 14.5px; color: var(--text-primary); display: block;">Academic / Symposium Deck</b>
+              <span style="font-size: 12.5px; color: var(--text-muted);">Methodology diagrams, findings hierarchy</span>
+            </div>
+          </label>
+
+          <label class="estimator-label">
+            <input type="checkbox" class="estimator-check" data-name="Interactive Canvas / Micro-Interactions" data-days="2" data-deliverable="Interactive Canvas / Physics Background" />
+            <div>
+              <b style="font-size: 14.5px; color: var(--text-primary); display: block;">Interactive Motion & Canvas</b>
+              <span style="font-size: 12.5px; color: var(--text-muted);">Thread grid canvas, spring physics, cursor glow</span>
+            </div>
+          </label>
+        </div>
+
+        <div class="estimator-result-card">
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.1em; margin-bottom: 4px;">
+              Estimated Turnaround Timeline
+            </div>
+            <div id="est-turnaround" style="font-family: var(--font-display); font-size: 24px; font-weight: 700; color: var(--accent-blue);">
+              5 - 8 Days Turnaround
+            </div>
+            <div id="est-deliverables" style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px;">
+              <div class="deliverable-chip"><span>✓</span> Master 10-15 Slide .PPTX Master</div>
+              <div class="deliverable-chip"><span>✓</span> Full Responsive Website Codebase</div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" id="est-apply-btn">
+            <span>Apply Scope to Brief ↓</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6. THE PIXELFORGE CREW
+         ============================================================ -->
+    <section id="team" class="section-wrapper section-divider container">
+      <div class="section-badge">
+        <span>THE PIXELFORGE CREW</span>
+      </div>
+
+      <h2 class="section-title">Small team. Clear roles.</h2>
+      <p class="section-lead">
+        Three young creators with segregated responsibilities — websites, security software, and presentation design. Here is exactly who does what.
+      </p>
+
+      <div class="team-grid">
+
+        <!-- Krushnrajsinh -->
+        <div class="team-card">
+          <div class="team-avatar-box icon-blue">👨‍💻</div>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px;">
+            Member 01 • Chief Developer
+          </div>
+          <h3 class="team-member-name">Krushnrajsinh Chudasama</h3>
+          <div class="team-member-role" style="color: var(--accent-blue);">Co-Founder & Chief Website Developer</div>
+          <div class="team-member-headline">Builds the websites — and the decks too.</div>
+          <p class="team-member-bio">
+            Co-founder of PixelForge and chief website developer of the team. Crafted every interface you see here, including Sentinel Shield, the JARVIS HUD viewer, and this website. Also holds deep expertise in crafting high-impact PowerPoint decks — investor narratives, data hierarchies, and clean slide systems.
+          </p>
+          <div class="team-skills-tags">
+            <span class="team-skill-tag">Website Development</span>
+            <span class="team-skill-tag">React & TypeScript</span>
+            <span class="team-skill-tag">Chief Developer</span>
+            <span class="team-skill-tag">PPT Design Expertise</span>
+          </div>
+        </div>
+
+        <!-- Rishi -->
+        <div class="team-card">
+          <div class="team-avatar-box icon-amber">🎨</div>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-amber); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px;">
+            Member 02 • Presentation & Code
+          </div>
+          <h3 class="team-member-name">Rishi</h3>
+          <div class="team-member-role" style="color: var(--accent-amber);">Presentation Designer & Emerging Developer</div>
+          <div class="team-member-headline">PPT design first — now learning to code.</div>
+          <p class="team-member-bio">
+            Rishi designs polished, clean presentation decks at PixelForge, from academic symposiums to startup pitches. He is also actively emerging in coding — leveling up on programming skills alongside his visual design craft.
+          </p>
+          <div class="team-skills-tags">
+            <span class="team-skill-tag">PPT Design</span>
+            <span class="team-skill-tag">Emerging in Coding</span>
+            <span class="team-skill-tag">Creative Layouts</span>
+            <span class="team-skill-tag">Visual Pacing</span>
+          </div>
+        </div>
+
+        <!-- Yuvi -->
+        <div class="team-card">
+          <div class="team-avatar-box icon-emerald">📐</div>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-emerald); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px;">
+            Member 03 • Slide Architecture
+          </div>
+          <h3 class="team-member-name">Yuvi</h3>
+          <div class="team-member-role" style="color: var(--accent-emerald);">Presentation Designer</div>
+          <div class="team-member-headline">Slides that carry the story.</div>
+          <p class="team-member-bio">
+            Yuvi crafts presentation decks that communicate clearly — disciplined typography, thoughtful pacing, and layouts that keep complex technical and business information effortless to absorb.
+          </p>
+          <div class="team-skills-tags">
+            <span class="team-skill-tag">PPT Design</span>
+            <span class="team-skill-tag">Visual Storytelling</span>
+            <span class="team-skill-tag">Slide Systems</span>
+            <span class="team-skill-tag">Information Design</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="margin-top: 32px; padding: 18px 24px; border-radius: 12px; background: #ffffff; border: 1px solid var(--border-subtle); display: flex; align-items: center; gap: 12px; font-size: 13.5px; color: var(--text-secondary);">
+        <span>✦</span>
+        <span>
+          Want a deck crafted by <strong>Rishi</strong> or <strong>Yuvi</strong>, or a website engineered by <strong>Krushnrajsinh</strong>? Head to <a href="#contact" style="color: var(--accent-blue); font-weight: 600; text-decoration: none;">Contact</a> and select your scope.
+        </span>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         7. ACHIEVEMENTS & DISTINCTIONS
+         ============================================================ -->
+    <section id="achievements" class="section-wrapper section-divider container">
+      <div class="section-badge emerald">
+        <span>COMPETITIONS & DISTINCTIONS</span>
+      </div>
+
+      <h2 class="section-title">Honors & Track Record.</h2>
+      <p class="section-lead">
+        Demonstrated excellence in regional robotics engineering, competitive parliamentary debate, and Model United Nations diplomacy at age 15.
+      </p>
+
+      <div class="achievements-grid">
+
+        <!-- WSRO Champion -->
+        <div class="achievement-card">
+          <div>
+            <div class="achievement-header">
+              <span class="project-badge-pill" style="color: var(--accent-blue); border-color: rgba(37, 99, 235, 0.25);">
+                🏆 Regional Champion
+              </span>
+              <span class="achievement-year">2024 - 2025</span>
+            </div>
+            <h3 class="achievement-title">WSRO Regional Winner</h3>
+            <div class="achievement-org">World STEM & Robotics Olympiad</div>
+            <p class="achievement-desc">
+              Secured 1st place in the regional chapter of the World STEM & Robotics Olympiad, engineering innovative hardware prototypes and high-impact technical presentation decks.
+            </p>
+          </div>
+          <div class="achievement-footer">
+            <span style="color: var(--accent-blue); font-weight: 700;">✓</span>
+            <span><b>Demonstrated skill:</b> Advanced technical problem-solving, structural mechanics, and clear scientific communication.</span>
+          </div>
+        </div>
+
+        <!-- Cyber Shield Shipped Product -->
+        <div class="achievement-card">
+          <div>
+            <div class="achievement-header">
+              <span class="project-badge-pill" style="color: var(--accent-emerald); border-color: rgba(5, 150, 105, 0.25);">
+                🛡️ Shipped Working Product
+              </span>
+              <span class="achievement-year">2025 - 2026</span>
+            </div>
+            <h3 class="achievement-title">Sentinel Shield / Cyber Shield Suite</h3>
+            <div class="achievement-org">Self-started Product Build</div>
+            <p class="achievement-desc">
+              Built a complete cyber-safety platform: live phishing-pattern analysis with risk verdict, local password analysis, an AI-styled guidance assistant, and a Chrome extension that flags risky pages while browsing.
+            </p>
+          </div>
+          <div class="achievement-footer">
+            <span style="color: var(--accent-emerald); font-weight: 700;">✓</span>
+            <span><b>Demonstrated skill:</b> End-to-end product architecture — the UI you can test in this site is powered by the shipped code.</span>
+          </div>
+        </div>
+
+        <!-- Model United Nations -->
+        <div class="achievement-card">
+          <div>
+            <div class="achievement-header">
+              <span class="project-badge-pill" style="color: var(--accent-amber); border-color: rgba(234, 88, 12, 0.25);">
+                🏛️ Diplomacy & Public Speaking
+              </span>
+              <span class="achievement-year">2024</span>
+            </div>
+            <h3 class="achievement-title">Model United Nations (MUN) Delegate</h3>
+            <div class="achievement-org">Inter-School & Regional MUN Conferences</div>
+            <p class="achievement-desc">
+              Represented nation-state delegations across intense multilateral committee debates, authoring working papers, crisis directives, and policy resolutions.
+            </p>
+          </div>
+          <div class="achievement-footer">
+            <span style="color: var(--accent-amber); font-weight: 700;">✓</span>
+            <span><b>Demonstrated skill:</b> Honed rhetoric, negotiation tactics, rapid information synthesis, and persuasive storytelling.</span>
+          </div>
+        </div>
+
+        <!-- Sahodaya Inter-School Debate -->
+        <div class="achievement-card">
+          <div>
+            <div class="achievement-header">
+              <span class="project-badge-pill" style="color: var(--accent-indigo); border-color: rgba(99, 102, 241, 0.25);">
+                🎙️ Debate Distinction
+              </span>
+              <span class="achievement-year">2024</span>
+            </div>
+            <h3 class="achievement-title">Sahodaya Inter-School Debate</h3>
+            <div class="achievement-org">Sahodaya School Complex</div>
+            <p class="achievement-desc">
+              Awarded top standing in high-stakes parliamentary and extempore debate rounds on contemporary socio-economic, ethical, and technological governance topics.
+            </p>
+          </div>
+          <div class="achievement-footer">
+            <span style="color: var(--accent-indigo); font-weight: 700;">✓</span>
+            <span><b>Demonstrated skill:</b> Proven ability to dissect multifaceted arguments under strict time constraints.</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8. ABOUT & WORKING PHILOSOPHY
+         ============================================================ -->
+    <section id="about" class="section-wrapper section-divider container">
+      <div class="section-badge">
+        <span>DISCIPLINE & IDENTITY</span>
+      </div>
+
+      <h2 class="section-title">Who is PixelForge?</h2>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 40px;">
+        <div class="card-surface">
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 16px;">
+            Our Core Statement
+          </div>
+          <p style="font-size: clamp(17px, 2vw, 21px); color: var(--text-primary); line-height: 1.6; font-weight: 500; margin-bottom: 20px;">
+            "PixelForge is a team of young makers led by Krushnrajsinh, our Co-Founder & Chief Website Developer — who also holds real expertise in PPT design. Rishi and Yuvi run presentation design, with Rishi emerging in coding too."
+          </p>
+          <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.65;">
+            "Everything shown on this site is work we actually built — Sentinel Shield / Cyber Shield, the JARVIS visualization system, and the real master decks. We care deeply about the craft and details that make the final result feel complete."
+          </p>
+        </div>
+
+        <div style="display: grid; gap: 16px;">
+          <div class="spec-item-box">
+            <b style="color: var(--accent-blue); font-family: var(--font-mono);">01. Real Work, Real Demos</b>
+            <p style="margin-top: 4px;">Every project on this site is something we actually built. Click "Run Live Demo" and you test the real UI — not a mockup.</p>
+          </div>
+          <div class="spec-item-box">
+            <b style="color: var(--accent-blue); font-family: var(--font-mono);">02. Structure Before Style</b>
+            <p style="margin-top: 4px;">Presentations and websites that succeed are built on logic, hierarchy, and purpose — not decorative clutter.</p>
+          </div>
+          <div class="spec-item-box">
+            <b style="color: var(--accent-blue); font-family: var(--font-mono);">03. Bespoke & Tailored</b>
+            <p style="margin-top: 4px;">No recycled templates. Each deck layout and web component is engineered from first principles for your specific topic.</p>
+          </div>
+          <div class="spec-item-box">
+            <b style="color: var(--accent-blue); font-family: var(--font-mono);">04. Direct Collaboration</b>
+            <p style="margin-top: 4px;">Work directly with the PixelForge crew — swift, focused communication with zero middlemen.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         9. MEMBER CIRCLE (AUTH & PRIVACY)
+         ============================================================ -->
+    <section id="portal" class="section-wrapper section-divider container">
+      <div class="section-badge emerald">
+        <span>PRIVACY-FIRST MEMBER ACCESS</span>
+      </div>
+
+      <h2 class="section-title">Join the PixelForge Circle.</h2>
+      <p class="section-lead">
+        All we ask for is <strong>your name and a password</strong> — nothing else. No phone number, no tracking, no database collecting your private data. It lives only inside your own browser.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 36px; margin-top: 40px; align-items: start;">
+        <!-- Auth Card -->
+        <div class="portal-card">
+          <!-- Logged Out View -->
+          <div id="portal-logged-out">
+            <div class="portal-mode-toggle">
+              <button class="portal-mode-btn active" data-mode="signup">Create Account</button>
+              <button class="portal-mode-btn" data-mode="login">Sign In</button>
+            </div>
+
+            <form id="portal-form">
+              <div class="input-group">
+                <label for="portal-name" class="input-label">1. Your Name</label>
+                <input type="text" id="portal-name" class="text-input" placeholder="e.g. Alex Rivera" required autocomplete="off" />
+              </div>
+
+              <div class="input-group">
+                <label for="portal-pass" class="input-label">2. Your Password</label>
+                <input type="password" id="portal-pass" class="text-input" placeholder="Just name + password — that's it" required autocomplete="new-password" />
+              </div>
+
+              <div id="portal-status" class="portal-status-msg" style="display: none;"></div>
+
+              <button type="submit" class="btn btn-primary" id="portal-submit-btn" style="width: 100%; box-sizing: border-box; justify-content: center; margin-top: 8px;">
+                <span>Create Member Account</span>
+                <span>→</span>
+              </button>
+
+              <div style="font-family: var(--font-mono); font-size: 11.5px; color: var(--text-muted); line-height: 1.5; margin-top: 18px;">
+                🔒 Zero tracking: Passwords are hashed locally with SHA-256 and never leave your device.
+              </div>
+            </form>
+          </div>
+
+          <!-- Logged In View -->
+          <div id="portal-logged-in" style="display: none;">
+            <div class="logged-in-badge-row">
+              <div class="user-avatar-circle" id="portal-user-initial">A</div>
+              <div>
+                <div style="font-size: 19px; font-weight: 700; color: var(--text-primary);" id="portal-user-name">Member</div>
+                <div style="font-size: 12px; font-family: var(--font-mono); color: var(--accent-emerald);">Verified PixelForge Member</div>
+              </div>
+            </div>
+
+            <div style="display: grid; gap: 12px; margin-bottom: 24px;">
+              <div style="padding: 14px 18px; border-radius: 10px; background: var(--bg-subtle); border: 1px solid var(--border-subtle);">
+                <div style="font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); text-transform: uppercase;">Member Perks</div>
+                <div style="font-size: 14px; color: var(--text-primary); margin-top: 4px;">Priority reply queue, member pricing on combined website + deck packages, and early access to new demos.</div>
+              </div>
+            </div>
+
+            <button class="btn btn-secondary" id="portal-logout-btn" style="width: 100%; justify-content: center;">
+              <span>Sign Out</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Privacy Guarantees Column -->
+        <div style="display: grid; gap: 16px;">
+          <div class="spec-item-box">
+            <h4>Why just name & password?</h4>
+            <p>We apply the exact philosophy from our security work (Sentinel Shield): minimal data, zero friction, and zero surveillance. Your password never leaves your browser.</p>
+          </div>
+          <div class="spec-item-box">
+            <h4>No phone numbers. Ever.</h4>
+            <p>No OTPs, no marketing texts, and no third-party database tracking your visits. The site is 100% static and GitHub Pages friendly.</p>
+          </div>
+          <div class="spec-item-box">
+            <h4>Direct line to the makers</h4>
+            <p>Members enjoy priority attention when inquiring via the <a href="#contact" style="color: var(--accent-blue); text-decoration: none; font-weight: 600;">Contact section</a> below.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         10. DIRECT CONTACT & COLLABORATION
+         ============================================================ -->
+    <section id="contact" class="section-wrapper section-divider container">
+      <div class="section-badge">
+        <span>START A COLLABORATION</span>
+      </div>
+
+      <h2 class="section-title">Have an idea? Let's build it.</h2>
+      <p class="section-lead">
+        Tell us what you're working on. Whether you need a PowerPoint presentation, a custom website, or both — let's discuss how we can help.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 36px; margin-top: 40px; align-items: start;">
+        <!-- Contact Form Card -->
+        <div class="card-surface">
+          <div style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px;">
+            1. Select Inquiry Scope
+          </div>
+
+          <div class="inquiry-pills-row">
+            <button class="inquiry-pill active" data-inquiry="PowerPoint Presentation Design">PowerPoint Presentation</button>
+            <button class="inquiry-pill" data-inquiry="Website Design & Development">Website Development</button>
+            <button class="inquiry-pill" data-inquiry="Comprehensive Package (Web + Deck)">Both (Web + Deck)</button>
+            <button class="inquiry-pill" data-inquiry="Custom Creative Collaboration">Custom Collaboration</button>
+          </div>
+
+          <div class="input-group">
+            <label for="custom-note-input" class="input-label">2. Project Brief / Topic (Optional)</label>
+            <textarea id="custom-note-input" class="text-input" rows="4" placeholder="E.g., 12-slide investor pitch deck for clean tech, or personal portfolio with light minimalist aesthetic..." style="resize: vertical;"></textarea>
+          </div>
+
+          <!-- Prominent CONTACT ME Action Button -->
+          <div style="margin: 24px 0 16px;">
+            <button type="button" class="btn btn-primary" id="contact-submit-btn" style="width: 100%; box-sizing: border-box; padding: 16px; font-size: 16px; justify-content: center; box-shadow: var(--shadow-glow);">
+              <span>CONTACT ME</span>
+              <span>⚡</span>
+            </button>
+            <div style="font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); text-align: center; margin-top: 8px;">
+              ⚡ Instantly opens your email client with krushuchudasama03@gmail.com pre-addressed.
+            </div>
+          </div>
+
+          <!-- Copyable Email Display Box -->
+          <div class="contact-email-box">
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 10.5px; color: var(--text-muted); text-transform: uppercase;">Direct Email Address</div>
+              <div class="email-address-text">krushuchudasama03@gmail.com</div>
+            </div>
+            <button class="btn btn-secondary btn-sm" id="copy-email-btn">
+              <span id="copy-status-text">Copy Address</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Guarantees Column -->
+        <div style="display: grid; gap: 16px;">
+          <div class="spec-item-box">
+            <h4>Prompt Response Guarantee</h4>
+            <p>Every message is read and answered directly by Krushnrajsinh within 12-24 hours. We can arrange a quick video or text alignment to refine your scope.</p>
+          </div>
+          <div class="spec-item-box">
+            <h4>100% Confidentiality & Data Privacy</h4>
+            <p>Client materials, pitch deck financials, strategy documents, and proprietary project information remain strictly confidential.</p>
+          </div>
+          <div class="spec-item-box">
+            <h4>Complete Handover Ownership</h4>
+            <p>Upon completion, you receive fully editable PowerPoint master files (.pptx), vector assets, and clean production GitHub repositories with unrestricted ownership.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       11. MODAL LIGHTBOX (IN-PAGE LIVE DEMO VIEWER)
+       ============================================================ -->
+  <div class="modal-overlay" id="demo-modal" role="dialog" aria-modal="true" aria-label="Live Demo Preview">
+    <div class="modal-container">
+      <div class="modal-header-bar">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-family: var(--font-mono); font-size: 11.5px; color: var(--accent-emerald); font-weight: 700;">● LIVE RUNTIME</span>
+          <span id="demo-modal-title" style="font-weight: 700; font-size: 14.5px; color: var(--text-primary);">Demo Preview</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <a id="demo-modal-external" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+            <span>Open In Full Tab ↗</span>
+          </a>
+          <button class="modal-close-btn" id="demo-modal-close" aria-label="Close demo preview">✕</button>
+        </div>
+      </div>
+      <iframe id="demo-modal-iframe" class="modal-iframe" src="about:blank" title="Demo Preview Frame"></iframe>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       12. FOOTER
+       ============================================================ -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-top-row">
+        <!-- Brand Info -->
+        <div style="max-width: 420px;">
+          <div style="display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 20px; font-weight: 700; margin-bottom: 10px;">
+            <div class="brand-icon" style="width: 30px; height: 30px; font-size: 14px;">✦</div>
+            <span>PixelForge</span>
+          </div>
+          <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px;">
+            Young creators building bespoke websites, pitch decks & security tools — crafted by Krushnrajsinh, Rishi, and Yuvi.
+          </p>
+          <div style="font-family: var(--font-mono); font-size: 13px; color: var(--text-muted);">
+            Direct: <a href="mailto:krushuchudasama03@gmail.com" style="color: var(--accent-blue); text-decoration: none;">krushuchudasama03@gmail.com</a>
+          </div>
+        </div>
+
+        <!-- Links Columns -->
+        <div style="display: flex; gap: 48px; flex-wrap: wrap;">
+          <div class="footer-nav-col">
+            <h5>Navigation</h5>
+            <ul class="footer-links-list">
+              <li><a href="#work">Our Work</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#presentations">PowerPoint Design</a></li>
+              <li><a href="#web-engineering">Web Engineering</a></li>
+              <li><a href="#estimator">Scope Estimator</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-nav-col">
+            <h5>Live Demos</h5>
+            <ul class="footer-links-list">
+              <li><a href="./demos/sentinel-shield.html" target="_blank" rel="noopener noreferrer">Sentinel Shield (Web UI)</a></li>
+              <li><a href="./demos/cyber-shield-deck.html" target="_blank" rel="noopener noreferrer">Cyber Shield (10-Slide Deck)</a></li>
+              <li><a href="./demos/jarvis-viewer.html?version=v7" target="_blank" rel="noopener noreferrer">JARVIS v7 (Source Viewer)</a></li>
+              <li><a href="./demos/jarvis-viewer.html?version=v8" target="_blank" rel="noopener noreferrer">JARVIS v8 (Source Viewer)</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-nav-col">
+            <h5>Crew & Access</h5>
+            <ul class="footer-links-list">
+              <li><a href="#team">The PixelForge Crew</a></li>
+              <li><a href="#achievements">Honors & Competitions</a></li>
+              <li><a href="#about">About & Manifesto</a></li>
+              <li><a href="#portal">Member Circle</a></li>
+              <li><a href="#contact">Contact The Crew</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright & System Attribution -->
+      <div class="footer-bottom-row">
+        <div>
+          © <span id="current-year">2026</span> PixelForge. All rights reserved. Repository: <code style="color: var(--accent-blue);">Younglancers</code>
+        </div>
+        <div>
+          Handcrafted with HTML5, CSS3 & Elastic Thread Canvas. Zero AI generic templates.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="./assets/js/confetti.js"></script>
+  <script src="./assets/js/grid-threads.js"></script>
+  <script src="./assets/js/app.js"></script>
+  <script>
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
