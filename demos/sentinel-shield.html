@@ -1,0 +1,966 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sentinel Shield — Security Notebook</title><style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
+:root{--ink:#24302a;--muted:#77817a;--paper:#fbfaf7;--paper2:#f2efe8;--line:#e7e2d7;--sage:#9bb89a;--sage2:#dcebd9;--blue:#b9dce7;--blue2:#e4f2f5;--peach:#f2d4bd;--yellow:#f4e4a6;--red:#cf6f6f;--green:#638b67;--shadow:0 18px 50px rgba(60,70,60,.10)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f5f3ee;color:var(--ink);font-family:'DM Sans',sans-serif}body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.28;background-image:radial-gradient(#b8b1a3 .65px,transparent .65px);background-size:18px 18px;z-index:-2}.app-shell{max-width:1280px;margin:auto;padding:24px 28px 70px}.topbar{position:sticky;top:14px;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 18px;border:1px solid rgba(231,226,215,.9);border-radius:20px;background:rgba(251,250,247,.88);backdrop-filter:blur(18px);box-shadow:0 10px 35px rgba(60,70,60,.07);margin-bottom:22px}.topbar-brand{display:flex;align-items:center;gap:11px}.topbar-logo{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;background:var(--ink);box-shadow:4px 4px 0 var(--sage);font-size:19px}.topbar-name{font:800 18px Manrope}.topbar-tag{font-size:11px;padding:5px 9px;border-radius:999px;background:var(--sage2);color:#527258}.topbar-stats{display:flex;gap:18px;color:var(--muted);font-size:12px}.topbar-stats b{color:var(--ink)}
+.tabbar{display:flex;gap:6px;overflow:auto;padding:5px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.72);margin-bottom:30px}.tab-btn{border:0;background:transparent;color:#737b74;padding:10px 15px;border-radius:13px;font:600 12px 'DM Sans';white-space:nowrap;cursor:pointer;transition:.2s}.tab-btn:hover{background:var(--paper2);color:var(--ink)}.tab-btn.active{background:var(--ink);color:#fff;box-shadow:4px 4px 0 var(--sage)}.tab-panel{display:none}.tab-panel.active{display:block;animation:page .45s ease}@keyframes page{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.page-header{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin:8px 0 25px}.page-header-icon{width:52px;height:52px;border-radius:17px;background:var(--blue2);display:grid;place-items:center;font-size:24px;box-shadow:5px 5px 0 var(--blue);animation:none}.hero-title{font:800 clamp(27px,4vw,42px) Manrope;letter-spacing:-1.7px;color:var(--ink);background:none;-webkit-text-fill-color:initial}.hero-subtitle{margin-top:6px;color:var(--muted);font-size:13px;max-width:720px;line-height:1.55}
+.panel{background:rgba(255,255,255,.76);border:1px solid var(--line);border-radius:22px;padding:22px;margin-bottom:16px;box-shadow:0 8px 30px rgba(60,70,60,.045);backdrop-filter:blur(10px);position:relative;overflow:hidden}.panel:before{content:"";position:absolute;right:-70px;top:-90px;width:180px;height:180px;border-radius:50%;background:var(--sage2);opacity:.45;pointer-events:none}.panel:hover{box-shadow:var(--shadow);transform:translateY(-1px);transition:.25s}.panel-head{display:flex;align-items:center;gap:12px;margin-bottom:15px}.panel-icon{width:38px;height:38px;border-radius:12px;background:var(--paper2);display:grid;place-items:center;font-size:18px}.panel-title{font:700 15px Manrope}.panel-sub,.note{color:var(--muted);font-size:12px;line-height:1.55}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}.stat-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:4px 4px 0 #e7eee5}.stat-number{font:800 29px Manrope}.stat-label{font-size:11px;color:var(--muted);margin-top:3px}
+label{display:block;font-size:11px;font-weight:700;color:#667069;margin:0 0 7px}input[type=text],input[type=password],input[type=number],textarea,select{width:100%;border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px 14px;color:var(--ink);font:500 13px 'DM Sans';outline:none;transition:.2s}input:focus,textarea:focus,select:focus{border-color:var(--sage);box-shadow:0 0 0 4px var(--sage2)}.btn{border:0;border-radius:13px;background:var(--ink);color:#fff;padding:11px 17px;font:700 12px 'DM Sans';cursor:pointer;box-shadow:4px 4px 0 var(--sage);transition:.2s}.btn:hover{transform:translate(-1px,-1px);box-shadow:6px 6px 0 var(--sage)}.btn:disabled{opacity:.5;box-shadow:none}.btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:none}.btn-row{display:flex;gap:9px;flex-wrap:wrap}.btn-sm{padding:7px 11px;font-size:11px}
+.legit-hero{background:linear-gradient(135deg,#fffdf9,#edf7f5 55%,#edf3fa);padding:30px;border-radius:28px;border:1px solid #e0e8e2;box-shadow:8px 8px 0 #e5eee5}.legit-input-row{display:flex;gap:10px}.legit-input-row input{border-radius:16px;padding:16px 18px;font-size:14px}.legit-input-row .btn{padding:0 25px}.legit-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}.legit-chips span{padding:6px 10px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:10px;color:#68736c}.verdict-box{border-radius:16px;padding:14px;text-align:center;font-weight:800;border:1px solid var(--line)}
+.chat-window{max-height:480px;overflow:auto;display:flex;flex-direction:column;gap:12px;padding:8px}.chat-msg{max-width:78%;padding:12px 15px;border-radius:17px;font-size:13px;line-height:1.5;white-space:pre-wrap}.chat-msg.user{align-self:flex-end;background:var(--ink);color:#fff;border-bottom-right-radius:5px}.chat-msg.assistant{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:5px}.chat-msg.system-note{align-self:center;color:var(--muted);font-size:11px;background:transparent}.chat-input-row{display:flex;gap:8px}.assistant-quick-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}.quick-chat{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:7px 11px;font-size:11px;cursor:pointer;color:var(--ink)}.assistant-cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.assistant-cap{background:#fff;border:1px solid var(--line);border-radius:16px;padding:15px;display:flex;gap:10px}.assistant-cap b{font:700 12px Manrope}.assistant-cap small{display:block;color:var(--muted);font-size:10px;line-height:1.45;margin-top:3px}.assistant-safety-note{margin-top:12px;background:#fff7df;border:1px solid #eadba8;border-radius:13px;padding:11px;font-size:11px}.details-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:9px}.details-row{background:#fff;border:1px solid var(--line);border-radius:13px;padding:10px}.details-label{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}.details-value{font-size:12px;font-weight:700;margin-top:3px}.seal-row{display:flex;justify-content:center}.seal-wrap{width:170px;height:170px}.gauge-wrap{display:flex;flex-direction:column;align-items:center}.gauge-label{font-size:10px;color:var(--muted)}table{width:100%;border-collapse:collapse;font-size:11px}th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left}th{font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}.table-wrap{overflow:auto}.dropzone{border:1.5px dashed #b9cbbb;border-radius:15px;padding:22px;text-align:center;background:#fbfdf9}.badge{display:inline-block;border-radius:999px;padding:4px 9px;font-size:10px}.badge-pass{background:var(--sage2);color:var(--green)}.badge-fail{background:#f7dddd;color:var(--red)}.fb-form label{margin-top:12px}.fb-stars{display:flex;gap:6px}.fb-stars button{width:40px;height:40px;border:1px solid var(--line);border-radius:11px;background:#fff;color:#c7cbc7;font-size:20px;cursor:pointer}.fb-stars button.on{color:#d69a31;background:#fff8e7}.status-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px}.status-dot.ok{background:var(--green)}.status-dot.off{background:#9ba39e}
+/* notebook / pinterest details */
+.panel-title:after{content:""}.panel:nth-child(odd){background:rgba(255,255,255,.82)}.page-header:after{content:"";width:110px;height:34px;border-radius:50%;background:var(--yellow);opacity:.5;transform:rotate(-3deg);position:absolute;right:50px;z-index:-1}.page-header{position:relative}.hero-title::after{content:"";display:block;width:72px;height:4px;background:var(--peach);border-radius:50%;transform:rotate(-2deg);margin-top:4px}.tabbar::-webkit-scrollbar{height:0}::-webkit-scrollbar{width:8px}::-webkit-scrollbar-thumb{background:#cdd6ce;border-radius:20px}::-webkit-scrollbar-track{background:transparent}
+@media(max-width:850px){.stat-grid{grid-template-columns:repeat(2,1fr)}.assistant-cap-grid{grid-template-columns:1fr}.two-col{grid-template-columns:1fr}.topbar{position:relative;top:0}.page-header{align-items:flex-start}.topbar-stats{display:none}}@media(max-width:600px){.app-shell{padding:14px}.legit-input-row{flex-direction:column}.legit-input-row .btn{padding:13px}.stat-grid{grid-template-columns:1fr 1fr}.panel{padding:17px}.hero-title{font-size:28px}}
+</style></head><body><div class="app-shell">
+<header class="topbar"><div class="topbar-brand"><span class="topbar-logo">🛡️</span><span class="topbar-name">Sentinel Shield</span><span class="topbar-tag">Security notebook</span></div><div class="topbar-stats"><span><b id="tb-scans">0</b> URLs scanned</span><span><b id="tb-pw">0</b> passwords checked</span><span id="tb-api-status" hidden><span class="status-dot off"></span>API: checking…</span></div></header>
+<nav class="tabbar" id="tabbar"><button class="tab-btn active" data-tab="dashboard">⌂ Overview</button><button class="tab-btn" data-tab="phishing">◌ Website Check</button><button class="tab-btn" data-tab="password">⌁ Password</button><button class="tab-btn" data-tab="assistant">✦ AI Assistant</button><button class="tab-btn" data-tab="extension">◇ Extension</button><button class="tab-btn" data-tab="feedback">♡ Feedback</button><button class="tab-btn" data-tab="about">i About</button></nav>
+<main>
+<section class="tab-panel active" data-tab="dashboard"><div class="page-header"><div><div class="hero-title">Your security notebook</div><div class="hero-subtitle">A calm workspace for checking links, passwords, and suspicious digital activity.</div></div><div class="page-header-icon">✦</div></div><div class="stat-grid" id="dash-stats"></div><div class="two-col"><div class="panel"><div class="panel-head"><span class="panel-icon">◌</span><div><div class="panel-title">Recent URL scans</div><div class="panel-sub">Your latest checks, kept locally.</div></div></div><div class="table-wrap"><table id="dash-scans"><thead><tr><th>Time</th><th>URL</th><th>Verdict</th><th>Risk</th></tr></thead><tbody></tbody></table></div><div class="note" id="dash-scans-empty">No scans yet — open Website Check to begin.</div></div><div class="panel"><div class="panel-head"><span class="panel-icon">⌁</span><div><div class="panel-title">Recent password checks</div><div class="panel-sub">Scores only — passwords are never stored.</div></div></div><div class="table-wrap"><table id="dash-pw"><thead><tr><th>Time</th><th>Verdict</th><th>Score</th></tr></thead><tbody></tbody></table></div><div class="note" id="dash-pw-empty">No checks yet — open Password.</div></div></div><div class="panel"><div class="panel-title">Start here</div><p class="note">Use Website Check for URL analysis, Password for local strength analysis, and Assistant for project help or URL intelligence. Your browser keeps scan history locally.</p></div></section>
+<section class="tab-panel" data-tab="password"><div class="page-header"><div><div class="hero-title">Password, without the guesswork.</div><div class="hero-subtitle">Test strength locally with a clear checklist and an estimated crack-time signal.</div></div><div class="page-header-icon">⌁</div></div><div class="panel"><div class="two-col"><div><label for="pw-username">Username · optional</label><input type="text" id="pw-username" placeholder="e.g. jane.doe"></div><div><label for="pw-password">Password</label><input type="password" id="pw-password" placeholder="Type a password to test"></div></div><div style="margin-top:13px"><button class="btn" id="pw-analyze">Analyze password →</button></div><p class="note">Checked entirely in your browser.</p></div><div class="panel" id="pw-result" style="display:none"><div class="two-col"><div class="center"><div id="pw-gauge"></div><div class="gauge-label">Strength score</div></div><div><div class="verdict-box" id="pw-verdict"></div><p>Estimated brute-force crack time: <b id="pw-crack"></b></p><p id="pw-passed"></p></div></div><div style="margin-top:12px"><b>Checklist</b><div id="pw-checklist" style="margin-top:6px"></div></div></div><div class="panel"><div class="panel-title">Build a stronger passphrase</div><ul class="note"><li>Use 4–5 random unrelated words plus a symbol and number.</li><li>Never reuse a password across sites.</li><li>Use a password manager for unique credentials.</li><li>Turn on two-factor authentication where possible.</li></ul></div><div class="panel"><div class="panel-title">Password-check history</div><div class="table-wrap"><table id="pw-history"><thead><tr><th>Time</th><th>Verdict</th><th>Score</th></tr></thead><tbody></tbody></table></div><div class="note" id="pw-history-empty">No checks yet.</div></div></section>
+<section class="tab-panel" data-tab="phishing"><div class="page-header"><div><div class="hero-title">Is this website really what it says?</div><div class="hero-subtitle">Check a URL for phishing patterns, brand impersonation, typosquatting and domain trust signals.</div></div><div class="page-header-icon">◌</div></div><div class="panel legit-hero"><label for="url-input">Paste a website URL</label><div class="legit-input-row"><input type="text" id="url-input" placeholder="https://example.com" autocomplete="off"><button class="btn" id="scan-btn">Check website →</button></div><div class="legit-chips"><span>HTTPS</span><span>Typosquatting</span><span>Brand impersonation</span><span>ML ensemble</span></div></div><div id="scan-output"></div><div hidden><input type="text" id="api-endpoint" value="http://localhost:5000"><button id="api-retest"></button><div id="api-status-note"></div></div></section>
+<section class="tab-panel" data-tab="assistant"><div class="page-header"><div><div class="hero-title">Ask Sentinel.</div><div class="hero-subtitle">A notebook-style assistant for understanding the project and checking URLs.</div></div><div class="page-header-icon">✦</div></div><div class="panel assistant-chat-panel"><div class="assistant-quick-row"><button class="quick-chat" data-chat-prompt="How does Sentinel Shield calculate the URL risk score?">Risk score</button><button class="quick-chat" data-chat-prompt="What features can Sentinel Shield detect?">Project features</button><button class="quick-chat" data-chat-prompt="How does the machine-learning ensemble work?">ML model</button></div><div class="chat-window" id="chat-window"></div><div class="chat-input-row"><input type="text" id="chat-input" placeholder="Ask something or paste a URL…"><button class="btn" id="chat-send">Send</button></div></div><div class="panel assistant-capabilities"><div class="assistant-cap-grid"><div class="assistant-cap"><span>🧠</span><div><b>Project Expert</b><small>Explains the scanner, password checker, API and extension.</small></div></div><div class="assistant-cap"><span>🔗</span><div><b>URL Intelligence</b><small>Detects URLs in your message and scans them.</small></div></div><div class="assistant-cap"><span>🛡️</span><div><b>Authenticity Check</b><small>Separates risk from domain authenticity.</small></div></div></div><div class="assistant-safety-note">⚠️ A low-risk result does not prove a site is the genuine owner.</div></div><div class="panel"><div class="panel-head"><span class="panel-icon">▦</span><div><div class="panel-title">Load phishing.csv</div><div class="panel-sub">Optional browser-only dataset context for the assistant.</div></div></div><input type="file" id="csv-file" accept=".csv"><div id="csv-summary" class="note" style="margin-top:8px"></div></div><div hidden><div id="chat-status-title"></div><div id="chat-status-sub"></div></div></section>
+<section class="tab-panel" data-tab="extension"><div class="page-header"><div><div class="hero-title">A quiet guard for Chrome.</div><div class="hero-subtitle">The extension checks pages as you browse and shows the result in the toolbar.</div></div><div class="page-header-icon">◇</div></div><div class="panel"><p class="note">A Manifest V3 extension with automatic page checks, a toolbar badge and a QR scanning tab.</p><button class="btn" id="ext-download">Download extension (.zip) →</button><div class="note" id="ext-download-status"></div></div><div class="panel"><div class="panel-title">Install it</div><ol class="note"><li>Unzip the download.</li><li>Open <code>chrome://extensions</code>.</li><li>Enable Developer mode.</li><li>Select Load unpacked.</li><li>Browse normally and watch the badge update.</li></ol></div></section>
+<section class="tab-panel" data-tab="feedback"><div class="page-header"><div><div class="hero-title">Leave a little note.</div><div class="hero-subtitle">Tell us what worked, what broke, and what you want next.</div></div><div class="page-header-icon">♡</div></div><div class="panel fb-form"><label>Overall rating</label><div class="fb-stars" id="fb-stars"><button type="button" data-n="1">★</button><button type="button" data-n="2">★</button><button type="button" data-n="3">★</button><button type="button" data-n="4">★</button><button type="button" data-n="5">★</button></div><label for="fb-type">Type</label><select id="fb-type"><option>Idea</option><option>Bug</option><option>Compliment</option><option>Other</option></select><label for="fb-msg">Your message</label><textarea id="fb-msg" rows="5" maxlength="1000" placeholder="What worked, what didn't, what you'd like next…"></textarea><label for="fb-email">Email · optional</label><input type="text" id="fb-email" placeholder="you@example.com"><div style="margin-top:12px"><button class="btn" id="fb-send">Send feedback →</button></div><div class="note" id="fb-status"></div></div></section>
+<section class="tab-panel" data-tab="about"><div class="page-header"><div><div class="hero-title">Inside Sentinel Shield.</div><div class="hero-subtitle">A quick field guide to what powers the project.</div></div><div class="page-header-icon">i</div></div><div class="panel"><div class="panel-title">🗂 What's in the package</div><p class="note"><code>index.html</code> is the front end. <code>api.py</code> can serve the trained ML ensemble using your phishing dataset.</p></div><div class="panel"><div class="panel-title">🔑 Password checker</div><p class="note">Local rule-based analysis covering length, common passwords, dictionary words, username reuse, repetition and character variety.</p></div><div class="panel"><div class="panel-title">🎣 Phishing & domain analysis</div><p class="note">When the API is reachable, URLs use the trained ensemble plus typosquat and brand checks; otherwise the browser uses a transparent heuristic.</p></div><div class="panel"><div class="panel-title">🧭 AI assistant</div><p class="note">Uses the configured backend/OpenAI connection when available, with a local fallback.</p></div><div class="panel"><div class="panel-title">📦 Extension</div><p class="note">The extension source can be loaded unpacked from the extension folder.</p></div></section>
+</main></div><script id="app-data" type="application/json">{"KNOWN_BRANDS": {"google": "google.com", "paypal": "paypal.com", "amazon": "amazon.com", "apple": "apple.com", "microsoft": "microsoft.com", "facebook": "facebook.com", "instagram": "instagram.com", "netflix": "netflix.com", "bankofamerica": "bankofamerica.com", "chase": "chase.com", "wellsfargo": "wellsfargo.com", "ebay": "ebay.com", "linkedin": "linkedin.com", "twitter": "twitter.com", "x": "x.com", "dropbox": "dropbox.com", "adobe": "adobe.com", "coinbase": "coinbase.com", "binance": "binance.com"}, "COMMON_PASSWORDS": ["trustno1", "123456", "princess", "thomas", "abc123", "sunshine", "iloveyou1", "123456789", "andrew", "changeme", "asdfgh", "dragon", "p@ssw0rd", "flower", "welcome", "password1", "password", "zaq12wsx", "1q2w3e4r", "root", "pass123", "jennifer", "jordan", "1234", "qazwsx", "temp123", "harley", "monkey", "121212", "abcd1234", "hunter", "1qaz2wsx", "starwars", "michael", "12345678", "qwerty123", "charlie", "hello", "master", "hannah", "letmein123", "1234567", "guest", "solo", "tigger", "robert", "000000", "ranger", "batman", "qwerty", "passw0rd", "buster", "superman", "qwertyuiop", "test", "1234567890", "whatever", "shadow", "123123", "freedom", "hockey", "baseball", "admin", "login", "111111", "letmein", "12345", "iloveyou", "football", "soccer"], "COMMON_WORDS": ["spring", "happy", "house", "banana", "coffee", "eagle", "dragon", "flower", "welcome", "money", "family", "mountain", "facebook", "music", "garden", "office", "chocolate", "friend", "orange", "river", "amazon", "tiger", "college", "winter", "twitter", "school", "autumn", "beach", "ocean", "summer", "computer", "love", "apple", "google", "movie", "internet"], "SAMPLE_DATASET": {"Phishing (illustrative)": ["http://paypa1-login-secure.verify-account.xyz/webscr?cmd=login", "http://192.168.1.1/update-account/signin.php", "http://bit.ly/3-account-verify-now", "http://amaz0n-security.free-bonus.com/login?redirect=account", "http://netfl1x-billing-update.com/renew", "http://secure-appleid.verify-suspended.info/signin", "http://bankofamerica.account-alert.support/login", "http://wellsfargo-secure.userverify.xyz/", "http://chase-alert.confirm-identity.online/login", "http://linkedin-security-check.free-domains.net/verify"], "Legitimate (illustrative)": ["https://www.google.com", "https://www.wikipedia.org", "https://github.com/anthropics", "https://www.paypal.com", "https://www.amazon.com", "https://www.microsoft.com", "https://www.apple.com", "https://www.netflix.com", "https://www.linkedin.com", "https://www.chase.com"]}, "EXTENSION_FILES": {"manifest.json": "{\n  \"manifest_version\": 3,\n  \"name\": \"Sentinel Shield \\u2014 Phishing Guard\",\n  \"version\": \"1.2.0\",\n  \"description\": \"Automatically checks every page you navigate to for phishing risk (badge on the icon, no click needed), plus QR scanning, with a user-configurable API endpoint.\",\n  \"action\": {\n    \"default_popup\": \"popup.html\",\n    \"default_title\": \"Sentinel Shield \\u2014 auto-checking this page\"\n  },\n  \"background\": { \"service_worker\": \"background.js\" },\n  \"options_page\": \"options.html\",\n  \"permissions\": [\"activeTab\", \"storage\", \"tabs\"],\n  \"host_permissions\": [\"<all_urls>\"]\n}\n", "popup.html": "<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"utf-8\">\n  <style>\n    :root {\n      --bg: #05070d; --bg2: #0d1a2b; --text: #e9eef7; --muted: #8b96ab;\n      --accent1: #22d3ee; --accent2: #34d399; --accent3: #818cf8; --accent4: #fb7185;\n      --border: rgba(255,255,255,0.14);\n    }\n    * { box-sizing: border-box; }\n    body {\n      font-family: -apple-system, \"Segoe UI\", Roboto, sans-serif;\n      width: 320px; padding: 14px; margin: 0;\n      background: linear-gradient(160deg, var(--bg), var(--bg2));\n      color: var(--text);\n    }\n    h3 {\n      margin: 0 0 2px 0; font-size: 15px;\n      background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));\n      -webkit-background-clip: text; -webkit-text-fill-color: transparent;\n    }\n    .sub { font-size: 11px; color: var(--muted); margin-bottom: 10px; }\n    .tabs { display: flex; gap: 6px; margin-bottom: 10px; }\n    .tab-btn {\n      flex: 1; padding: 6px 4px; font-size: 11px; font-weight: 600;\n      background: rgba(255,255,255,0.05); border: 1px solid var(--border);\n      border-radius: 8px; color: var(--muted); cursor: pointer;\n    }\n    .tab-btn.active {\n      background: linear-gradient(90deg, var(--accent2), var(--accent3));\n      color: white; border-color: transparent;\n    }\n    .panel { display: none; }\n    .panel.active { display: block; }\n    #url { font-size: 11px; word-break: break-all; color: var(--muted); margin-bottom: 10px; }\n    .verdict {\n      padding: 10px; border-radius: 10px; font-weight: 700; font-size: 13px;\n      text-align: center; margin-bottom: 8px; border: 1px solid transparent;\n    }\n    #details { font-size: 11.5px; line-height: 1.5; color: var(--muted); }\n    .auto-note {\n      display: flex; align-items: center; gap: 6px; font-size: 10.5px;\n      color: var(--muted); margin-bottom: 8px;\n    }\n    .pulse-dot {\n      width: 7px; height: 7px; border-radius: 50%; background: var(--accent2);\n      box-shadow: 0 0 0 0 rgba(52,211,153,0.6); flex-shrink: 0;\n      animation: pulse 1.8s infinite;\n    }\n    @keyframes pulse {\n      0% { box-shadow: 0 0 0 0 rgba(52,211,153,0.55); }\n      70% { box-shadow: 0 0 0 6px rgba(52,211,153,0); }\n      100% { box-shadow: 0 0 0 0 rgba(52,211,153,0); }\n    }\n    button.primary {\n      width: 100%; padding: 9px; border: none; border-radius: 10px; cursor: pointer;\n      background: linear-gradient(90deg, var(--accent2), var(--accent3));\n      color: white; font-weight: 700; font-size: 12.5px; margin-top: 4px;\n    }\n    button.primary:hover { filter: brightness(1.08); }\n    .dropzone {\n      border: 1.5px dashed rgba(0,187,249,0.5); border-radius: 10px;\n      padding: 14px; text-align: center; font-size: 11.5px; color: var(--muted);\n      margin-bottom: 8px; cursor: pointer; transition: border-color .15s ease;\n    }\n    .dropzone:hover { border-color: var(--accent2); }\n    input[type=file] { display: none; }\n    a { color: var(--accent2); text-decoration: none; }\n    a:hover { text-decoration: underline; }\n    .footer-link { font-size: 11px; margin-top: 10px; display: block; text-align: center; }\n  <\/style>\n<\/head>\n<body>\n  <h3>\\U0001F6E1\\uFE0F Sentinel Shield<\/h3>\n  <div class=\"sub\">Phishing \\u0026 QR guard for this tab<\/div>\n\n  <div class=\"tabs\">\n    <button class=\"tab-btn active\" data-panel=\"urlPanel\">\\U0001F310 This page<\/button>\n    <button class=\"tab-btn\" data-panel=\"qrPanel\">\\U0001F4F7 Scan QR<\/button>\n  <\/div>\n\n  <div id=\"urlPanel\" class=\"panel active\">\n    <div class=\"auto-note\"><span class=\"pulse-dot\"><\/span>Auto-checks every page you open \\u2014 no click needed<\/div>\n    <div id=\"url\">Loading current tab...<\/div>\n    <div id=\"verdict\" class=\"verdict\" style=\"background:rgba(255,255,255,0.06); color: var(--muted);\">\n      Checking automatically...\n    <\/div>\n    <div id=\"details\"><\/div>\n    <button id=\"checkBtn\" class=\"primary\">Re-check now<\/button>\n  <\/div>\n\n  <div id=\"qrPanel\" class=\"panel\">\n    <div class=\"dropzone\" id=\"qrDrop\">\\U0001F4F7 Click to upload a QR code image<\/div>\n    <input type=\"file\" id=\"qrFile\" accept=\"image/*\">\n    <div id=\"qrVerdict\" class=\"verdict\" style=\"display:none;\"><\/div>\n    <div id=\"qrDetails\"><\/div>\n  <\/div>\n\n  <a class=\"footer-link\" href=\"options.html\" target=\"_blank\">\\u2699\\uFE0F Configure API endpoint<\/a>\n  <script src=\"popup.js\"><\/script>\n<\/body>\n<\/html>\n", "popup.js": "\n// ---------------------------------------------------------------------\n// Tab switching\n// ---------------------------------------------------------------------\ndocument.querySelectorAll('.tab-btn').forEach((btn) => {\n  btn.addEventListener('click', () => {\n    document.querySelectorAll('.tab-btn').forEach((b) => b.classList.remove('active'));\n    document.querySelectorAll('.panel').forEach((p) => p.classList.remove('active'));\n    btn.classList.add('active');\n    document.getElementById(btn.dataset.panel).classList.add('active');\n  });\n});\n\n// ---------------------------------------------------------------------\n// URL check — now AUTOMATIC. background.js checks every page as soon as\n// it finishes loading and caches the result per-tab. This popup just\n// reads that cached result the instant it opens, so you see a verdict\n// with zero clicks. The button becomes a manual \"Re-check now\" in case\n// you want to force a fresh check (e.g. after configuring an API).\n// ---------------------------------------------------------------------\nconst urlEl = document.getElementById('url');\nconst verdictEl = document.getElementById('verdict');\nconst detailsEl = document.getElementById('details');\nconst btn = document.getElementById('checkBtn');\nlet currentTabId = null;\nlet currentUrl = '';\n\nfunction renderUrlResult(result) {\n  const bad = result.label === 'NOT SAFE';\n  verdictEl.style.background = bad ? 'rgba(251,113,133,0.18)' : 'rgba(52,211,153,0.18)';\n  verdictEl.style.color = bad ? '#fb7185' : '#34d399';\n  verdictEl.style.borderColor = bad ? '#fb7185' : '#34d399';\n  verdictEl.textContent = `${bad ? '\\u{1F6A8}' : '\\u2705'} ${result.label} \\u2014 risk ${result.risk_score}/100`;\n  const when = result.checkedAt ? new Date(result.checkedAt).toLocaleTimeString() : '';\n  detailsEl.innerHTML =\n    `<div style=\"opacity:.7; margin-bottom:4px;\">via ${result.source}${when ? ' \\u00b7 ' + when : ''}<\/div>` +\n    (result.flags || []).map((f) => `\\u2022 ${f}`).join('<br>');\n}\n\nasync function requestFreshCheck() {\n  verdictEl.textContent = 'Checking...';\n  detailsEl.innerHTML = '';\n  chrome.runtime.sendMessage({ type: 'CHECK_NOW', tabId: currentTabId, url: currentUrl }, (result) => {\n    if (result) renderUrlResult(result);\n  });\n}\n\nchrome.tabs.query({active: true, currentWindow: true}, (tabs) => {\n  const tab = tabs[0];\n  currentTabId = tab?.id ?? null;\n  currentUrl = tab?.url || '';\n  urlEl.textContent = currentUrl || '(no URL on this tab)';\n\n  if (currentTabId == null || !currentUrl) {\n    verdictEl.textContent = 'Nothing to check on this tab';\n    return;\n  }\n\n  // Ask the background worker for whatever it already has cached for\n  // this tab. If it already auto-checked this page, we show it\n  // instantly with no extra network/heuristic call.\n  chrome.runtime.sendMessage({ type: 'GET_CACHED', tabId: currentTabId, url: currentUrl }, (cached) => {\n    if (cached && cached.url === currentUrl) {\n      renderUrlResult(cached);\n    } else {\n      // Not cached yet (e.g. popup opened before background finished) —\n      // trigger one check now so the user isn't left staring at nothing.\n      requestFreshCheck();\n    }\n  });\n});\n\nbtn.addEventListener('click', requestFreshCheck);\n\n// ---------------------------------------------------------------------\n// QR scanning inside the popup — this is NEW. It uses the browser's\n// native Barcode Detection API (shipped in current Chrome, no external\n// library needed, nothing leaves the browser). If it's unavailable we\n// say so plainly instead of silently doing nothing.\n// ---------------------------------------------------------------------\nconst qrDrop = document.getElementById('qrDrop');\nconst qrFile = document.getElementById('qrFile');\nconst qrVerdict = document.getElementById('qrVerdict');\nconst qrDetails = document.getElementById('qrDetails');\n\nqrDrop.addEventListener('click', () => qrFile.click());\n\nfunction showQrStatus(text, kind) {\n  qrVerdict.style.display = 'block';\n  qrDetails.innerHTML = '';\n  const colors = {\n    info: ['rgba(0,187,249,0.15)', '#00bbf9'],\n    good: ['rgba(0,245,212,0.18)', '#00f5d4'],\n    bad: ['rgba(241,91,181,0.18)', '#f15bb5'],\n  }[kind] || ['rgba(255,255,255,0.08)', '#eaf0ff'];\n  qrVerdict.style.background = colors[0];\n  qrVerdict.style.color = colors[1];\n  qrVerdict.style.border = `1px solid ${colors[1]}`;\n  qrVerdict.textContent = text;\n}\n\nfunction parseUpi(raw) {\n  try {\n    const u = new URL(raw);\n    const q = Object.fromEntries(u.searchParams.entries());\n    return { vpa: q.pa || '', name: q.pn || '', amount: q.am || '', note: q.tn || '' };\n  } catch (e) {\n    return null;\n  }\n}\n\nqrFile.addEventListener('change', async () => {\n  const file = qrFile.files[0];\n  if (!file) return;\n\n  if (!('BarcodeDetector' in window)) {\n    showQrStatus(\n      '\\u26A0\\uFE0F QR scanning needs Chrome\\u2019s Barcode Detection API, which ' +\n      'isn\\u2019t available in this browser build. Use the \\U0001F310 QR tab in the ' +\n      'full Sentinel Shield app instead.',\n      'bad',\n    );\n    return;\n  }\n\n  try {\n    const bitmap = await createImageBitmap(file);\n    const detector = new BarcodeDetector({ formats: ['qr_code'] });\n    const codes = await detector.detect(bitmap);\n    if (!codes.length) {\n      showQrStatus(\n        '\\u26A0\\uFE0F No QR code found in that image. Try a clearer, closer, ' +\n        'better-lit photo.',\n        'bad',\n      );\n      return;\n    }\n    const raw = codes[0].rawValue;\n    if (raw.toLowerCase().startsWith('upi://pay')) {\n      const upi = parseUpi(raw);\n      showQrStatus('\\U0001F4B3 UPI payment QR detected', 'info');\n      qrDetails.innerHTML =\n        `<b>Payee:<\/b> ${upi?.name || '\\u2014'}<br>` +\n        `<b>VPA:<\/b> ${upi?.vpa || '\\u2014'}<br>` +\n        `<b>Amount:<\/b> ${upi?.amount || 'not pre-filled'}<br>` +\n        `<span style=\"opacity:.7;\">Always confirm the payee name in your UPI app before paying.<\/span>`;\n    } else {\n      showQrStatus('\\u2705 QR code decoded', 'good');\n      qrDetails.innerHTML = `<div style=\"word-break:break-all;\">${raw}<\/div>`;\n    }\n  } catch (e) {\n    showQrStatus('\\u26A0\\uFE0F Could not read that image: ' + e.message, 'bad');\n  }\n});\n", "options.html": "<!DOCTYPE html>\n<html>\n<head><meta charset=\"utf-8\">\n<style>\n  :root { --accent2: #0891b2; --accent3: #4f46e5; }\n  body { font-family: -apple-system, \"Segoe UI\", Roboto, sans-serif; padding: 24px; max-width: 440px; color: #1a1a2e; }\n  h3 { margin-top: 0; }\n  label { display:block; margin-top: 14px; font-weight: 600; font-size: 13px; }\n  input { width: 100%; padding: 9px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 8px; font-size: 13px; }\n  button { margin-top: 18px; padding: 10px 18px; border: none; border-radius: 8px; cursor: pointer;\n           background: linear-gradient(90deg, var(--accent2), var(--accent3)); color: white; font-weight: 700; }\n  #status { margin-top: 10px; color: #0f9d8a; font-size: 13px; font-weight: 600; }\n  p { font-size: 13px; line-height: 1.5; color: #444; }\n<\/style>\n<\/head>\n<body>\n  <h3>\\u2699\\uFE0F Sentinel Shield \\u2014 Settings<\/h3>\n  <p>Point this extension at your own API server (e.g. the included\n     <code>api.py<\/code>) so scans run your trained model instead of\n     the built-in local heuristic. Leave blank to use the local heuristic\n     only \\u2014 you're always in control of what this extension calls.<\/p>\n  <label for=\"apiUrl\">API endpoint URL<\/label>\n  <input id=\"apiUrl\" placeholder=\"http://localhost:5000/api/check_url\">\n  <label for=\"apiKey\">API key (optional)<\/label>\n  <input id=\"apiKey\" placeholder=\"only if your API requires one\">\n  <button id=\"save\">Save<\/button>\n  <div id=\"status\"><\/div>\n  <script src=\"options.js\"><\/script>\n<\/body>\n<\/html>\n", "options.js": "\nchrome.storage.sync.get(['apiUrl', 'apiKey'], (cfg) => {\n  document.getElementById('apiUrl').value = cfg.apiUrl || '';\n  document.getElementById('apiKey').value = cfg.apiKey || '';\n});\ndocument.getElementById('save').addEventListener('click', () => {\n  const apiUrl = document.getElementById('apiUrl').value.trim();\n  const apiKey = document.getElementById('apiKey').value.trim();\n  chrome.storage.sync.set({apiUrl, apiKey}, () => {\n    const s = document.getElementById('status');\n    s.textContent = 'Saved!';\n    setTimeout(() => s.textContent = '', 1500);\n  });\n});\n", "background.js": "\n// ---------------------------------------------------------------------\n// Background service worker — this is what makes checking AUTOMATIC.\n// As soon as a tab finishes loading a page (i.e. as soon as the URL you\n// typed/clicked has resolved), this runs a check in the background and\n// sets a badge on the toolbar icon:\n//   ✓ green  = SAFE\n//   !  red   = NOT SAFE\n// No click needed. The popup (popup.js) just reads the cached result\n// this worker already computed, so opening the popup shows an instant\n// verdict instead of making you press a button.\n//\n// Nothing is sent anywhere unless you configure an API endpoint in\n// Options — otherwise this runs the same local heuristic entirely\n// inside your browser, same as before.\n// ---------------------------------------------------------------------\n\nfunction localHeuristic(url) {\n  let score = 0;\n  const flags = [];\n  try {\n    const u = new URL(url);\n    if (!/^https?:$/.test(u.protocol)) return null; // skip chrome://, file://, extension pages, etc.\n    if (/^\\d{1,3}(\\.\\d{1,3}){3}$/.test(u.hostname)) { score += 30; flags.push('Uses a raw IP address'); }\n    if (u.protocol !== 'https:') { score += 15; flags.push('Not served over HTTPS'); }\n    if ((u.hostname.match(/-/g) || []).length >= 3) { score += 15; flags.push('Many hyphens in hostname'); }\n    const sus = ['login','verify','secure','update','confirm','account','signin'];\n    if (sus.some((w) => url.toLowerCase().includes(w))) { score += 20; flags.push('Contains suspicious keywords'); }\n    if (u.hostname.split('.').length > 4) { score += 10; flags.push('Unusually many subdomains'); }\n  } catch (e) {\n    return null;\n  }\n  score = Math.min(100, score);\n  return { label: score >= 40 ? 'NOT SAFE' : 'SAFE', risk_score: score, source: 'local heuristic', flags };\n}\n\nasync function checkViaApi(apiUrl, apiKey, url) {\n  const headers = { 'Content-Type': 'application/json' };\n  if (apiKey) headers['Authorization'] = 'Bearer ' + apiKey;\n  const resp = await fetch(apiUrl, { method: 'POST', headers, body: JSON.stringify({ url }) });\n  if (!resp.ok) throw new Error('API returned ' + resp.status);\n  const data = await resp.json();\n  data.source = 'configured API';\n  return data;\n}\n\nfunction getConfig() {\n  return new Promise((resolve) => {\n    chrome.storage.sync.get(['apiUrl', 'apiKey'], (cfg) => resolve(cfg || {}));\n  });\n}\n\nasync function runCheck(url) {\n  const cfg = await getConfig();\n  try {\n    if (cfg.apiUrl) return await checkViaApi(cfg.apiUrl, cfg.apiKey, url);\n  } catch (e) {\n    // API unreachable/misconfigured — fall back rather than leaving the\n    // tab unchecked.\n  }\n  return localHeuristic(url);\n}\n\nasync function checkAndBadge(tabId, url) {\n  const result = await runCheck(url);\n  if (!result) {\n    // Not an http(s) page (e.g. chrome://, an internal page) — clear any\n    // stale badge instead of showing a wrong verdict.\n    chrome.action.setBadgeText({ tabId, text: '' });\n    return null;\n  }\n  const bad = result.label === 'NOT SAFE';\n  chrome.action.setBadgeText({ tabId, text: bad ? '!' : '\\u2713' });\n  chrome.action.setBadgeBackgroundColor({ tabId, color: bad ? '#fb7185' : '#34d399' });\n  chrome.action.setTitle({\n    tabId,\n    title: `Sentinel Shield: ${result.label} (risk ${result.risk_score}/100)`,\n  });\n\n  const cached = { ...result, url, checkedAt: Date.now() };\n  try {\n    await chrome.storage.session.set({ [`result_${tabId}`]: cached });\n  } catch (e) {\n    // chrome.storage.session needs Chrome 102+; if unavailable, the\n    // popup will just re-check on open instead of reading a cache.\n  }\n  return cached;\n}\n\n// Fires once a navigation has finished loading — this is the \"as soon\n// as you type a URL (and it loads)\" trigger.\nchrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {\n  if (changeInfo.status === 'complete' && tab.url) {\n    checkAndBadge(tabId, tab.url);\n  }\n});\n\n// Also check when switching to a tab that hasn't been auto-checked yet\n// (e.g. a tab that was already open before the extension was installed).\nchrome.tabs.onActivated.addListener(({ tabId }) => {\n  chrome.tabs.get(tabId, (tab) => {\n    if (chrome.runtime.lastError || !tab || !tab.url) return;\n    chrome.storage.session.get([`result_${tabId}`], (data) => {\n      const cached = data[`result_${tabId}`];\n      if (!cached || cached.url !== tab.url) {\n        checkAndBadge(tabId, tab.url);\n      }\n    });\n  });\n});\n\n// Messages from the popup: read the cache, or force a fresh check.\nchrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {\n  if (msg?.type === 'GET_CACHED' && msg.tabId != null) {\n    chrome.storage.session.get([`result_${msg.tabId}`], (data) => {\n      sendResponse(data[`result_${msg.tabId}`] || null);\n    });\n    return true; // keep the message channel open for the async response\n  }\n  if (msg?.type === 'CHECK_NOW' && msg.tabId != null && msg.url) {\n    checkAndBadge(msg.tabId, msg.url).then((result) => sendResponse(result));\n    return true;\n  }\n});\n", "README.md": "# Sentinel Shield — Phishing Guard (Chrome Extension)\n\n## What changed (v1.2.0)\n- **NEW: Automatic checking.** You no longer have to click anything —\n  as soon as a page you navigate to finishes loading, a background\n  service worker checks it and sets a badge on the toolbar icon:\n  ✓ (green) = SAFE, ! (red) = NOT SAFE. Open the popup and the verdict\n  is already there, instantly, read from that background check.\n  A manual **Re-check now** button is still there if you want to force\n  a fresh check (e.g. right after configuring an API endpoint).\n- The popup now has a working **QR scan tab** using Chrome's built-in\n  Barcode Detection API (no external library, nothing leaves your\n  browser). Upload a QR image and it decodes instantly, including UPI\n  payment QR codes (shows payee name/VPA/amount).\n- Polished the popup UI (tabs, better contrast, pulse indicator showing\n  auto-check is active).\n\n## Install (unpacked, for development/testing)\n1. Unzip this folder somewhere permanent.\n2. Open Chrome → chrome://extensions\n3. Turn on \"Developer mode\" (top-right).\n4. Click \"Load unpacked\" and select this folder.\n5. Navigate to any page — the toolbar icon badge updates automatically\n   within a moment or two. Click the icon to see the full verdict, or\n   use the \"Scan QR\" tab to decode a QR image.\n\n## How the automatic checking works\n- `background.js` is a Manifest V3 service worker that listens for\n  `chrome.tabs.onUpdated` (fires when a page finishes loading) and\n  `chrome.tabs.onActivated` (fires when you switch tabs).\n- On each of those events it runs the same check the old \"Check this\n  page\" button used to run (local heuristic, or your configured API),\n  then sets the icon badge and caches the result per-tab in\n  `chrome.storage.session` so the popup can show it instantly.\n- Internal browser pages (`chrome://...`, `chrome-extension://...`,\n  etc.) are skipped — only regular http(s) pages are checked.\n\n## User control\n- Nothing is sent anywhere unless YOU configure an API endpoint in\n  Options (⚙️). Without one, URL checks use a small local heuristic and\n  QR scanning happens 100% inside your browser — neither calls out\n  anywhere. Automatic checking doesn't change this: it's the exact same\n  local-only logic, it just now runs on page load instead of on click.\n- Your endpoint + optional API key are stored with chrome.storage.sync\n  (only accessible to this extension).\n\n## Using it with the included api.py\n1. `pip install -r ../requirements.txt`\n2. Put phishing.csv next to api.py.\n3. Run: `python api.py`\n4. In the extension's Options page, set the API endpoint to:\n   http://localhost:5000/api/check_url\n5. Every page you visit from then on will be checked against your real\n   trained model automatically, in the background.\n\n## Note on QR scanning\nThe popup's QR tab needs `window.BarcodeDetector`, which ships in\ncurrent Chrome (desktop) by default. If you're on an older Chrome build\nor a Chromium fork without it, use the QR tab in the main web app\ninstead — it uses the same native Barcode Detection API with a jsQR\nfallback, so it works in effectively any browser.\n"}, "KB": [[["who are you", "what are you", "your name", "introduce yourself", "about you"], "I'm an AI chatbot designed to answer your questions about this website — URL scans, the ML model, the password checker, and the code and libraries used in it."], [["what can you do", "help", "capabilities", "how can you help"], "I can explain every feature of Sentinel Shield, walk through the Python and JavaScript code, describe the libraries used, and interpret URL scan results. Paste a URL and I'll scan it too."], [["thanks", "thank you", "thx"], "You're welcome! Ask me anything else about the project."], [["bye", "goodbye", "see you"], "Goodbye! Stay safe online. 👋"], [["what is sentinel shield", "what is this project", "about project", "project overview", "what is this website"], "Sentinel Shield is a phishing and password safety toolkit: a website legitimacy checker backed by an ML ensemble, a a password strength analyzer, an AI assistant and a Chrome extension."], [["features", "feature list", "what features"], "Features: URL/website legitimacy check, ML ensemble predictions, typosquat and brand-impersonation detection, domain trust signals, password checker, CSV dataset analysis, this assistant, and a Chrome extension."], [["tabs", "sections", "pages", "navigation"], "Tabs: Dashboard, Website Check, Password, Assistant, Extension, Feedback and About. Each is a section of the single index.html page."], [["tech stack", "technologies", "built with", "stack"], "Front end: plain HTML, CSS and JavaScript in one file. Back end: Python Flask with scikit-learn, pandas and numpy. Extras: a Manifest V3 Chrome extension."], [["project structure", "file structure", "folders", "files in project"], "index.html (whole front end), api.py (Flask backend), phishing.csv (dataset), requirements.txt, .env (keys), and extension/ (Chrome extension). The data/ folder holds the CSV split by class."], [["how to run", "run project", "start project", "setup", "install"], "Run python -m pip install -r requirements.txt, then python api.py, then open index.html. The front end also works alone, without the backend."], [["without backend", "standalone", "offline", "no server"], "Without api.py the page still works: the password checker, dashboard, local assistant and a browser heuristic for URLs all run in the browser."], [["build step", "framework", "react", "vue"], "There is no framework or build step. The entire front end is one index.html with inline CSS and JavaScript."], [["url scan", "how does url scan work", "scan a url", "website check work", "legitimacy check"], "A scan extracts structural features from the URL, checks typosquatting and brand impersonation, adds domain trust signals, runs the ML ensemble, and combines everything into a 0–100 risk score and verdict."], [["risk score", "score meaning", "0-100", "100/100", "what does score mean"], "The risk score runs 0–100. Higher means more phishing signals. Low risk is not proof a site is genuine, only that fewer warning signs were found."], [["verdict", "safe", "not safe", "suspicious", "legitimate verdict"], "The verdict is derived from the ensemble vote plus rule-based signals: legitimate/safe, suspicious, or not safe/phishing."], [["seal", "fraud seal", "legitimate seal", "badge"], "Every scan shows an inline-SVG seal: a red FRAUD ring or a green LEGITIMATE ring, so the headline result is clear at a glance."], [["low risk authentic", "does low risk mean safe", "ownership", "authentic"], "No. Low risk doesn't prove ownership or authenticity. Only a known official-domain match does; for logins and payments, verify the domain independently."], [["https", "ssl", "certificate", "tls"], "HTTPS is one signal only. Phishing sites often use HTTPS too, so the scanner treats it as a trust hint and never as proof. With the backend it can also inspect the certificate."], [["typosquat", "typosquatting", "lookalike domain", "misspelled domain"], "Typosquatting means registering a look-alike domain such as paypa1.com. The scanner compares the registered domain against known brand domains using Levenshtein edit distance."], [["levenshtein", "edit distance"], "levenshtein() in api.py counts the minimum single-character edits between two strings. A distance of 1–2 from a real brand domain suggests typosquatting."], [["brand impersonation", "brand check", "fake brand"], "brand_impersonation_check() looks for brand names or one-character look-alikes (paypa1) used on a domain that isn't the brand's real one. It matches whole words to avoid false alarms."], [["known brands", "brand list", "official domain"], "KNOWN_BRANDS maps brand names to their real domains (paypal to paypal.com and so on). It lives in api.py and in the app-data JSON inside index.html."], [["registered domain", "get_registered_domain", "root domain"], "get_registered_domain() reduces a hostname to its registrable domain (mail.google.com becomes google.com), so subdomain tricks can't hide the real owner."], [["domain trust", "domain age", "whois", "trust signals"], "domain_trust_signals() gathers domain-level hints such as age and registration data when the network allows, and feeds them into the risk score."], [["redirect", "redirect chain", "get_redirect_chain"], "get_redirect_chain() follows HTTP redirects and reports the hops, because phishing links often bounce through several domains before landing."], [["deep scan", "deep_scan"], "deep_scan is an option on /api/check_url that turns on slower network checks such as certificate inspection and redirect following."], [["url shortener", "shortening", "bit.ly"], "shortening_service() flags links from known URL shorteners, which hide the real destination and are common in phishing."], [["ip address url", "having_ip_address"], "having_ip_address() detects URLs that use a raw IP instead of a domain name, a classic phishing sign."], [["at symbol", "@", "count_atrate"], "count_atrate() counts @ characters. Anything before @ in a URL is ignored by browsers, so attackers use it to disguise the real host."], [["suspicious words", "login verify", "suspicious_words"], "suspicious_words() checks for terms like login, verify, secure, update and account that phishing URLs overuse to look official."], [["url length", "long url", "url_length", "hostname length"], "url_length() and hostname_length() are features: unusually long URLs and hostnames are more likely to hide phishing content."], [["hyphens", "dots", "subdomains", "count_dot", "count_hyphen"], "count_dot() and count_hyphen() count dots and hyphens. Many subdomains or hyphenated names like secure-login-paypal are typical of fake sites."], [["digits", "digit_count", "letter_count"], "digit_count() and letter_count() measure character makeup. Many digits in a domain often signal an auto-generated phishing host."], [["tld", "top level domain", "simple_tld", "tld_length", ".xyz"], "simple_tld() and tld_length() examine the top-level domain. Cheap TLDs such as .xyz or .top are over-represented in phishing."], [["features", "extract_features", "how many features", "feature extraction"], "extract_features() turns a URL into a numeric feature row (lengths, counts, flags) matching the columns of phishing.csv. explain_features() turns them into readable reasons."], [["explain features", "explain_features", "reasons"], "explain_features() converts the raw numbers into human-readable findings shown in the scan result, such as unusually long URL or uses an IP address."], [["ml model", "machine learning", "ensemble", "how model works"], "The model is an ensemble of Random Forest, Logistic Regression and Gradient Boosting, trained on phishing.csv. Each votes and ensemble_verdict() combines them."], [["random forest"], "Random Forest builds many decision trees on random subsets of data and features and averages their votes. It's robust and handles mixed feature types well."], [["logistic regression"], "Logistic Regression is a linear model that outputs a probability from a weighted sum of features. It adds a simple, fast, interpretable opinion to the ensemble."], [["gradient boosting"], "Gradient Boosting builds trees one after another, each correcting the previous one's errors. It is often the most accurate of the three models."], [["why ensemble", "why three models"], "Different models make different mistakes. Combining them reduces individual errors and gives a steadier, more reliable verdict."], [["train models", "train_models", "training"], "train_models() runs at server startup: it loads phishing.csv, splits train/test data, and fits the three models. That is why python api.py prints Training models first."], [["predict", "predict_all_models", "ensemble_verdict"], "predict_all_models() gets every model's prediction and probability for a URL; ensemble_verdict() merges them into one label and confidence."], [["compute risk score", "compute_risk_score"], "compute_risk_score() blends the ML probability with rule-based signals (brand, typosquat, HTTPS, trust) into the final 0–100 score."], [["recommendations", "generate_recommendations", "advice"], "generate_recommendations() produces plain-language advice after a scan, such as do not enter passwords or verify the domain independently."], [["dataset", "phishing.csv", "csv", "training data"], "phishing.csv has 11,430 rows, 5,715 phishing and 5,715 legitimate, with a url column, a status column and many numeric features (89 columns in total)."], [["legitimate.csv", "phishing_only.csv", "split dataset", "data folder"], "data/legitimate.csv and data/phishing_only.csv are the dataset split by class. api.py only trains from the combined phishing.csv, which needs both classes."], [["accuracy", "how accurate", "model accuracy"], "Accuracy depends on the data split; the models are trained and evaluated on phishing.csv at startup. No detector is perfect, so treat results as strong evidence, not proof."], [["retrain", "custom dataset", "own data"], "Replace phishing.csv with your own file using the same url and status columns (phishing/legitimate), restart python api.py, and it retrains automatically."], [["sample dataset", "sample_dataset", "/api/sample_dataset"], "The sample_dataset() route returns example phishing and legitimate URLs from the dataset for demos."], [["flask", "api.py", "backend", "what is api.py"], "api.py is the Flask backend. It trains the ML models, exposes the URL-scan endpoints, and proxies the AI chat to your OpenAI or Claude key."], [["endpoints", "routes", "api endpoints"], "GET /api/health, POST /api/check_url, GET /api/sample_dataset, GET /api/chat/status and POST /api/chat."], [["health", "/api/health"], "/api/health returns status ok and whether the models are loaded, so the front end can detect the backend."], [["check_url", "/api/check_url"], "POST /api/check_url with a url (and optional deep_scan) returns the full result: ensemble verdict, risk score, features, brand and typosquat findings and recommendations."], [["port", "5000", "localhost", "address"], "The backend listens on port 5000 (http://localhost:5000) and the page auto-detects it."], [["cors", "flask-cors"], "flask-cors allows index.html, opened from a file or another origin, to call the Flask API from the browser."], [["libraries", "dependencies", "requirements", "packages", "python libraries"], "requirements.txt: flask, flask-cors, pandas, numpy, scikit-learn, openpyxl, requests and python-dotenv."], [["scikit-learn", "sklearn"], "scikit-learn provides the Random Forest, Logistic Regression and Gradient Boosting models plus train/test splitting and metrics."], [["pandas"], "pandas loads phishing.csv into a DataFrame and handles the feature columns and labels."], [["numpy"], "numpy provides fast numeric arrays for the feature vectors passed to the models."], [["openpyxl"], "openpyxl reads and writes Excel files, letting the backend handle .xlsx datasets."], [["requests"], "requests makes the outbound HTTP calls: redirect checks and the calls to the OpenAI or Claude API."], [["python-dotenv", "dotenv", ".env"], "python-dotenv loads variables from the .env file next to api.py, such as OPENAI_API_KEY or ANTHROPIC_API_KEY, so keys never live in code."], [["password checker", "password strength", "password"], "The password checker is fully client-side. It scores length, character variety, common-password and dictionary matches, and username reuse. Nothing is sent anywhere."], [["breached password", "common passwords"], "COMMON_PASSWORDS in the app-data JSON is a built-in list of breached or very common passwords. Matching one sharply lowers the score."], [["password privacy", "is password sent"], "No. Passwords are analyzed in your browser and never transmitted or stored."], [["entropy", "password rules"], "Strength mixes length and variety: longer passphrases beat short complex ones. The checker also penalizes dictionary words and reuse of your username."], [["extension", "chrome extension", "browser extension"], "The Chrome extension (Manifest V3) checks each page as it loads and shows a badge on the toolbar icon. Load extension/ via chrome://extensions in Developer mode."], [["manifest", "manifest v3", "manifest.json"], "manifest.json declares the extension's name, permissions, popup, options page and background service worker under Manifest V3."], [["background.js", "service worker"], "background.js is the service worker: it listens for page loads, runs the heuristic (or your API), and updates the badge."], [["popup", "popup.js", "options.js"], "popup.html/popup.js show the current page's result; options.html/options.js let you point the extension at your own API endpoint."], [["install extension", "load unpacked"], "Open chrome://extensions, enable Developer mode, click Load unpacked, and pick the extension/ folder."], [["assistant", "chatbot", "how does chatbot work", "ai assistant"], "The assistant answers from a built-in knowledge base offline. If api.py has a Claude or OpenAI key, questions go to that AI, with URL scan results supplied as evidence."], [["ai provider", "claude api", "anthropic", "claude"], "Set ANTHROPIC_API_KEY in .env and api.py uses Claude (default model claude-haiku-4-5-20251001). With only OPENAI_API_KEY it uses OpenAI. AI_PROVIDER can force one."], [["openai api", "openai key", "gpt"], "Set OPENAI_API_KEY and OPENAI_MODEL in .env. api.py calls OpenAI's Responses API. Claude is used first when both keys exist, unless AI_PROVIDER says otherwise."], [["api key", "where to put key", "env file"], "Put keys only in .env next to api.py. Never paste them into index.html or a chat; .gitignore keeps .env out of Git."], [["chat in url", "url in chat", "paste url"], "Paste any http(s) URL in the chat; it's scanned first by the same scanner as the Website Check tab, and the AI is told not to override that verdict."], [["local assistant", "fallback"], "Without a working AI key, the assistant falls back to this built-in knowledge base, which needs no internet or API cost."], [["no credits", "429", "quota", "insufficient_quota"], "A 429 with insufficient_quota means your API account has no credit. Add billing, or just use the free built-in assistant."], [["401", "invalid api key"], "401 means the key is wrong or still the placeholder. Re-paste the real key into .env and restart python api.py."], [["build_chat_system_prompt", "system prompt"], "build_chat_system_prompt() creates the instructions and project facts sent to the AI, including the scanner result so it can't invent a verdict."], [["chat_status", "/api/chat/status"], "/api/chat/status tells the page whether an AI provider is configured (and which). The page checks it once at load, so reload after changing .env."], [["dashboard", "stats", "history"], "The Dashboard summarizes your scans and password checks this session, plus quick links to each tool."], [["localstorage", "storage", "saved data"], "Scan history stays in your browser. Nothing is uploaded except the URL you scan when the backend is connected."], [["privacy", "data collected"], "Passwords never leave your browser. URLs go only to your own local api.py, and chat text goes to your chosen AI provider if configured."], [["heuristic", "client-side heuristic"], "Without the backend, a JavaScript heuristic runs the same style of checks (structure, typosquat, brand, HTTPS) and gives a less precise score than the ML ensemble."], [["app-data", "embedded data"], "A JSON block in index.html holds KNOWN_BRANDS, COMMON_PASSWORDS, COMMON_WORDS, SAMPLE_DATASET, EXTENSION_FILES and the assistant's knowledge base."], [["extension files", "extension_files"], "The Extension tab can build a zip of the extension from EXTENSION_FILES stored inside index.html."], [["false positive", "wrong result", "false alarm"], "No detector is perfect. If a genuine site is flagged, compare the domain with the official one and read the listed reasons. The rules are transparent."], [["license", "mit"], "The project is MIT-licensed; see the LICENSE file."], [["security tips", "stay safe", "avoid phishing"], "Check the exact domain, don't trust urgency, type sensitive addresses yourself, use a password manager, and enable two-factor authentication."], [["what is phishing", "phishing meaning"], "Phishing tricks people into giving passwords or payments by imitating trusted sites or messages, usually via fake links."], [["why brand x", "brand x false"], "Earlier versions matched one-letter brands like x anywhere in a URL. The check now matches whole words, so .xyz no longer triggers it."], [["improve", "customize", "modify code", "add feature"], "Good starting points: add brands to KNOWN_BRANDS, retrain with your own CSV, or tune suspicious_words()."]]}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/papaparse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script><script>
+(function () {
+  "use strict";
+
+  // =========================================================================
+  // Embedded data (brand list, password lists, sample URLs, extension files)
+  // =========================================================================
+  const APP_DATA = JSON.parse(document.getElementById('app-data').textContent);
+  const KNOWN_BRANDS = APP_DATA.KNOWN_BRANDS;
+document.addEventListener("pointermove", e => { const p = e.target.closest && e.target.closest(".panel"); if (!p) return;
+  const r = p.getBoundingClientRect(); p.style.setProperty("--mx", (e.clientX - r.left) + "px"); p.style.setProperty("--my", (e.clientY - r.top) + "px"); });
+
+  const COMMON_PASSWORDS = new Set(APP_DATA.COMMON_PASSWORDS.map(s => s.toLowerCase()));
+  const COMMON_WORDS = new Set(APP_DATA.COMMON_WORDS.map(s => s.toLowerCase()));
+  const SAMPLE_DATASET = APP_DATA.SAMPLE_DATASET;
+  const EXTENSION_FILES = APP_DATA.EXTENSION_FILES;
+  const SPECIAL_CHARS = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+
+  // =========================================================================
+  // Persistent state (localStorage only — nothing leaves the browser)
+  // =========================================================================
+  const LS_KEY = "sentinelShield_v2";
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(LS_KEY)) || {}; } catch (e) { return {}; }
+  }
+  function saveState() {
+    try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch (e) { /* non-fatal */ }
+  }
+  const state = Object.assign({
+    scanHistory: [], passwordHistory: [], csvSummary: null, lastScan: null, apiEndpoint: "http://localhost:5000",
+  }, loadState());
+
+  // =========================================================================
+  // Small DOM helpers
+  // =========================================================================
+  const $ = (sel, root) => (root || document).querySelector(sel);
+  const $$ = (sel, root) => Array.from((root || document).querySelectorAll(sel));
+  function el(tag, attrs, children) {
+    const node = document.createElement(tag);
+    if (attrs) for (const k in attrs) {
+      if (k === "class") node.className = attrs[k];
+      else if (k === "text") node.textContent = attrs[k];
+      else node.setAttribute(k, attrs[k]);
+    }
+    (children || []).forEach(c => node.appendChild(c));
+    return node;
+  }
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  }
+
+  // =========================================================================
+  // Tab switching
+  // =========================================================================
+  $$(".tab-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      $$(".tab-btn").forEach(b => b.classList.remove("active"));
+      $$(".tab-panel").forEach(p => p.classList.remove("active"));
+      btn.classList.add("active");
+      $(`.tab-panel[data-tab="${btn.dataset.tab}"]`).classList.add("active");
+    });
+  });
+
+  // =========================================================================
+  // Gauge / badge helpers
+  // =========================================================================
+  function gaugeHtml(score, size) {
+    size = size || 150;
+    let color = "var(--accent2)";
+    if (score >= 70) color = "var(--accent4)";
+    else if (score >= 35) color = "var(--warning)";
+    const angle = Math.round((score / 100) * 360);
+    return `<div class="gauge-wrap">
+      <div style="width:${size}px;height:${size}px;border-radius:50%;margin:0 auto;
+                  background:conic-gradient(${color} ${angle}deg, var(--card-border) ${angle}deg 360deg);
+                  display:flex;align-items:center;justify-content:center;">
+        <div style="width:${size - 26}px;height:${size - 26}px;border-radius:50%;background:#fff;
+                    display:flex;align-items:center;justify-content:center;flex-direction:column;
+                    box-shadow: inset 0 0 0 1px var(--card-border);">
+          <div style="font-size:1.5rem;font-weight:700;color:${color};">${score}</div>
+          <div style="font-size:0.68rem;color:var(--muted);">/ 100</div>
+        </div>
+      </div></div>`;
+  }
+  function verdictColor(band) {
+    if (band === "HIGH RISK") return "var(--accent4)";
+    if (band === "MODERATE RISK") return "var(--warning)";
+    return "var(--accent2)";
+  }
+
+  // Original circular "seal" badge — not a copy of any stock image, just an
+  // SVG built in the app's own palette: coral-red ring for fraud, a
+  // pistachio/blue ring for legitimate.
+  function sealSvg(isFraud) {
+    const col = isFraud ? "#d64b4b" : "#3f7f4a";
+    const soft = isFraud ? "#f6d9d9" : "#d9ecda";
+    const label = isFraud ? "FRAUD" : "LEGITIMATE";
+    const sub = isFraud ? "SENTINEL SHIELD" : "SENTINEL SHIELD";
+    const stars = Array.from({ length: 10 }, (_, i) => {
+      const a = (i / 10) * Math.PI * 2 - Math.PI / 2;
+      const r = 78;
+      const x = 100 + r * Math.cos(a), y = 100 + r * Math.sin(a);
+      return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.1" fill="${col}" opacity="0.8"/>`;
+    }).join("");
+    const icon = isFraud
+      ? `<path d="M100 62 L112 88 L140 92 L120 111 L125 139 L100 125 L75 139 L80 111 L60 92 L88 88 Z" fill="none" stroke="${col}" stroke-width="3" stroke-linejoin="round"/>`
+      : `<path d="M78 101 L93 116 L124 84" fill="none" stroke="${col}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>`;
+    return `<svg class="seal-wrap" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="94" fill="#ffffff"/>
+      <circle cx="100" cy="100" r="92" fill="${soft}" opacity="0.45"/>
+      <circle cx="100" cy="100" r="86" fill="none" stroke="${col}" stroke-width="2" stroke-dasharray="3 5"/>
+      <circle cx="100" cy="100" r="70" fill="none" stroke="${col}" stroke-width="2"/>
+      ${stars}
+      <g transform="translate(0,-6)">${icon}</g>
+      <g transform="rotate(-8 100 100)">
+        <rect x="34" y="122" width="132" height="30" rx="6" fill="${col}"/>
+        <text x="100" y="142" text-anchor="middle" font-family="'Sora',sans-serif" font-weight="800"
+          font-size="${isFraud ? 19 : 15}" letter-spacing="2" fill="#ffffff">${label}</text>
+      </g>
+    </svg>`;
+  }
+
+  // =========================================================================
+  // PASSWORD CHECKER (100% client-side — never sent anywhere)
+  // =========================================================================
+  function checkPassword(username, password) {
+    const results = {};
+    results["Length ≥ 8"] = password.length >= 8;
+    results["Not a common/leaked password"] = !COMMON_PASSWORDS.has(password.toLowerCase());
+    results["Not a common dictionary word"] = !COMMON_WORDS.has(password.toLowerCase());
+    const uname = (username || "").trim().toLowerCase();
+    const containsName = !!uname && password.toLowerCase().includes(uname);
+    results["Doesn't contain your username"] = !containsName;
+    results["No excessive repeated characters"] = !/(.)\1\1\1\1/.test(password);
+    results["Has a digit"] = /[0-9]/.test(password);
+    results["Has an uppercase letter"] = /[A-Z]/.test(password);
+    results["Has a lowercase letter"] = /[a-z]/.test(password);
+    results["Has a special character"] = [...password].some(c => SPECIAL_CHARS.includes(c));
+    return results;
+  }
+  function estimateCrackTime(password) {
+    if (!password) return "instantly";
+    let charset = 0;
+    if (/[a-z]/.test(password)) charset += 26;
+    if (/[A-Z]/.test(password)) charset += 26;
+    if (/[0-9]/.test(password)) charset += 10;
+    if ([...password].some(c => SPECIAL_CHARS.includes(c))) charset += SPECIAL_CHARS.length;
+    charset = Math.max(charset, 1);
+    const combos = Math.pow(charset, password.length);
+    const guessesPerSec = 1e10;
+    let seconds = combos / guessesPerSec / 2;
+    if (seconds < 1) return "instantly";
+    const units = [
+      ["centuries", 60 * 60 * 24 * 365 * 100], ["years", 60 * 60 * 24 * 365],
+      ["days", 60 * 60 * 24], ["hours", 3600], ["minutes", 60], ["seconds", 1],
+    ];
+    for (const [name, unitSeconds] of units) {
+      if (seconds >= unitSeconds) {
+        const value = seconds / unitSeconds;
+        if (value > 1e6) return `trillions of ${name}`;
+        return `~${value.toLocaleString(undefined, { maximumFractionDigits: 0 })} ${name}`;
+      }
+    }
+    return "instantly";
+  }
+  function renderPasswordHistory() {
+    const tbody = $("#pw-history tbody"); tbody.innerHTML = "";
+    const rows = state.passwordHistory.slice(0, 20);
+    $("#pw-history-empty").style.display = rows.length ? "none" : "block";
+    rows.forEach(r => {
+      tbody.appendChild(el("tr", {}, [
+        el("td", { text: r.time }), el("td", { text: r.verdict }), el("td", { text: r.score + "%" }),
+      ]));
+    });
+  }
+  $("#pw-analyze").addEventListener("click", () => {
+    const username = $("#pw-username").value;
+    const password = $("#pw-password").value;
+    if (!password) { alert("Please type a password first."); return; }
+    const results = checkPassword(username, password);
+    const score = Object.values(results).filter(Boolean).length;
+    const total = Object.keys(results).length;
+    const pct = Math.round((score / total) * 100);
+    let color, verdict, verdictLabel;
+    if (pct >= 90) { color = "var(--accent2)"; verdict = "💪 STRONG — Excellent password!"; verdictLabel = "💪 STRONG"; }
+    else if (pct >= 60) { color = "var(--warning)"; verdict = "🙂 MODERATE — Could be stronger"; verdictLabel = "🙂 MODERATE"; }
+    else { color = "var(--accent4)"; verdict = "🚨 WEAK / BAD PASSWORD"; verdictLabel = "🚨 WEAK"; }
+
+    $("#pw-result").style.display = "block";
+    $("#pw-gauge").innerHTML = gaugeHtml(pct);
+    const vb = $("#pw-verdict");
+    vb.textContent = verdict;
+    vb.style.background = color + "22"; vb.style.color = color; vb.style.borderColor = color;
+    $("#pw-crack").textContent = estimateCrackTime(password);
+    $("#pw-passed").textContent = `Passed ${score} of ${total} checks`;
+    const checklist = $("#pw-checklist"); checklist.innerHTML = "";
+    Object.entries(results).forEach(([label, ok]) => {
+      const span = el("span", { class: ok ? "badge badge-pass" : "badge badge-fail", text: (ok ? "✅ " : "❌ ") + label });
+      checklist.appendChild(span);
+    });
+
+    state.passwordHistory.unshift({ time: new Date().toLocaleTimeString(), verdict: verdictLabel, score: pct });
+    state.passwordHistory = state.passwordHistory.slice(0, 20);
+    saveState(); renderPasswordHistory(); renderDashboard();
+  });
+
+  // =========================================================================
+  // API CONNECTION (real ML backend, with automatic heuristic fallback)
+  // =========================================================================
+  let apiOnline = false;
+  $("#api-endpoint").value = state.apiEndpoint;
+  async function testApiConnection() {
+    const base = $("#api-endpoint").value.trim().replace(/\/$/, "");
+    state.apiEndpoint = base; saveState();
+    const noteEl = $("#api-status-note"), tbEl = $("#tb-api-status");
+    noteEl.textContent = "Checking…";
+    try {
+      const controller = new AbortController();
+      const t = setTimeout(() => controller.abort(), 2500);
+      const resp = await fetch(base + "/api/health", { signal: controller.signal });
+      clearTimeout(t);
+      if (resp.ok) {
+        const data = await resp.json();
+        apiOnline = !!data.models_loaded;
+        if (apiOnline) {
+          noteEl.textContent = "✅ Connected — using the real trained ML ensemble.";
+          tbEl.innerHTML = '<span class="status-dot ok"></span>API: connected';
+        } else {
+          noteEl.textContent = "⚠️ Server reachable but models aren't loaded (is phishing.csv next to api.py?) — using the built-in heuristic.";
+          tbEl.innerHTML = '<span class="status-dot off"></span>API: no models';
+        }
+        return;
+      }
+    } catch (e) { /* fall through */ }
+    apiOnline = false;
+    noteEl.textContent = "⚪ Not reachable — using the built-in rule-based heuristic instead (run `python api.py` for real ML predictions).";
+    tbEl.innerHTML = '<span class="status-dot off"></span>API: offline';
+  }
+  $("#api-retest").addEventListener("click", () => { testApiConnection(); checkChatStatus(); });
+
+  // =========================================================================
+  // PHISHING / DOMAIN HEURISTIC ENGINE (local fallback)
+  // =========================================================================
+  const SHORTENER_RE = /bit\.ly|goo\.gl|shorte\.st|go2l\.ink|x\.co|ow\.ly|t\.co|tinyurl|tr\.im|is\.gd|cli\.gs|tiny\.cc|bit\.do|lnkd\.in|qr\.ae|adf\.ly|cutt\.us|v\.gd/i;
+  const SUSPICIOUS_RE = /paypal|login|signin|bank|account|update|free|lucky|service|bonus|ebayisapi|webscr/i;
+
+  function safeParseUrl(raw) {
+    let s = (raw || "").trim();
+    if (!/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//.test(s)) s = "http://" + s;
+    try { return new URL(s); } catch (e) { return null; }
+  }
+  function levenshtein(a, b) {
+    if (a === b) return 0;
+    if (!a) return b.length; if (!b) return a.length;
+    let prev = Array.from({ length: b.length + 1 }, (_, i) => i);
+    for (let i = 1; i <= a.length; i++) {
+      const cur = [i];
+      for (let j = 1; j <= b.length; j++) {
+        cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+      }
+      prev = cur;
+    }
+    return prev[b.length];
+  }
+  function registeredDomain(hostname) {
+    if (!hostname) return "";
+    const parts = hostname.split(".");
+    return parts.length >= 2 ? parts.slice(-2).join(".") : hostname;
+  }
+  function typosquatCheck(hostname, maxDistance) {
+    maxDistance = maxDistance || 2;
+    const reg = registeredDomain(hostname);
+    const hits = [];
+    for (const [brand, realDomain] of Object.entries(KNOWN_BRANDS)) {
+      if (reg === realDomain) continue;
+      const dist = levenshtein(reg, realDomain);
+      if (dist > 0 && dist <= maxDistance) hits.push({ brand, realDomain, seenDomain: reg, distance: dist });
+    }
+    return hits;
+  }
+  function brandImpersonationCheck(hostname, fullUrl) {
+    const reg = registeredDomain(hostname);
+    const hits = [];
+    const lowUrl = fullUrl.toLowerCase();
+    for (const [brand, realDomain] of Object.entries(KNOWN_BRANDS)) {
+      if (reg === realDomain) continue;
+      const tokens = lowUrl.split(/[^a-z0-9]+/).filter(Boolean);
+      let matched = tokens.includes(brand);
+      if (!matched && brand.length >= 6) matched = tokens.some(t => t.startsWith(brand) || levenshtein(t, brand) === 1);
+      if (matched) hits.push({ brand, realDomain, seenDomain: reg });
+    }
+    return hits;
+  }
+  function closestBrandMatches(hostname, topN) {
+    const reg = registeredDomain(hostname);
+    const rows = Object.entries(KNOWN_BRANDS).map(([brand, realDomain]) => ({
+      brand, realDomain, distance: levenshtein(reg, realDomain),
+    }));
+    rows.sort((a, b) => a.distance - b.distance);
+    return rows.slice(0, topN || 5);
+  }
+  function extractInfo(u, rawUrl) {
+    const hostname = u.hostname || "";
+    const labels = hostname ? hostname.split(".") : [];
+    return {
+      scheme: u.protocol.replace(":", ""),
+      hostname,
+      registeredDomain: registeredDomain(hostname),
+      subdomainCount: Math.max(0, labels.length - 2),
+      path: u.pathname || "/",
+      query: u.search ? u.search.slice(1) : "",
+      isIpLiteral: /^\d{1,3}(\.\d{1,3}){3}$/.test(hostname),
+      isPunycode: hostname.includes("xn--"),
+      usesHttps: u.protocol === "https:",
+      urlLength: rawUrl.length,
+      hostnameLength: hostname.length,
+    };
+  }
+  function domainTrustSignals(info) {
+    const hostname = info.hostname, reg = info.registeredDomain;
+    return [
+      ["No raw IP address used as the host", !info.isIpLiteral],
+      ["No punycode / IDN homograph encoding", !info.isPunycode],
+      ["Reasonable subdomain depth (\u2264 2)", info.subdomainCount <= 2],
+      ["Registered domain isn't unusually long (\u2264 20 chars)", reg.length <= 20],
+      ["Hostname doesn't contain suspicious keywords", !SUSPICIOUS_RE.test(hostname)],
+      ["Served over HTTPS", info.usesHttps],
+      ["Few hyphens in hostname (\u2264 2)", (hostname.match(/-/g) || []).length <= 2],
+    ];
+  }
+  function computeRiskScoreHeuristic(rawUrl, info, typosquatHits, brandHits) {
+    let score = 0;
+    const explanation = [];
+    if (info.isIpLiteral) { score += 25; explanation.push("+25 — uses a raw IP address instead of a domain"); }
+    if (SHORTENER_RE.test(rawUrl)) { score += 15; explanation.push("+15 — uses a known URL-shortening service"); }
+    if (SUSPICIOUS_RE.test(rawUrl)) { score += 15; explanation.push("+15 — contains suspicious keywords (login, verify, bank, etc.)"); }
+    if ((rawUrl.match(/@/g) || []).length) { score += 10; explanation.push("+10 — contains '@' (can hide the real destination)"); }
+    if ((info.path.match(/\/\//g) || []).length) { score += 10; explanation.push("+10 — embedded '//' inside the path (redirector pattern)"); }
+    const hyphens = (info.hostname.match(/-/g) || []).length;
+    if (hyphens >= 3) { score += 10; explanation.push(`+10 — ${hyphens} hyphens in the hostname (common in lookalike domains)`); }
+    if (!info.usesHttps) { score += 10; explanation.push("+10 — not served over HTTPS"); }
+    if (info.hostnameLength > 30) { score += 5; explanation.push("+5 — unusually long hostname"); }
+    if (info.urlLength > 75) { score += 5; explanation.push("+5 — unusually long URL"); }
+    if (info.isPunycode) { score += 10; explanation.push("+10 — punycode / IDN encoding (possible homograph attack)"); }
+    if (typosquatHits.length) {
+      const bump = Math.min(25, 10 * typosquatHits.length);
+      score += bump; explanation.push(`+${bump} — looks like a typosquat of ${typosquatHits.map(h => h.brand).join(", ")}`);
+    }
+    if (brandHits.length) {
+      const bump = Math.min(20, 10 * brandHits.length);
+      score += bump; explanation.push(`+${bump} — brand name(s) used (${brandHits.map(h => h.brand).join(", ")}) on a domain that doesn't belong to that brand`);
+    }
+    score = Math.max(0, Math.min(100, Math.round(score)));
+    if (explanation.length === 0) explanation.push("No structural or brand-based risk signals detected.");
+    const band = score >= 70 ? "HIGH RISK" : score >= 35 ? "MODERATE RISK" : "LOW RISK";
+    const label = score >= 40 ? "NOT SAFE" : "SAFE";
+    return { score, band, label, explanation };
+  }
+  function generateRecommendations(risk, typosquatHits, brandHits, info) {
+    const recs = [];
+    if (risk.score >= 70) recs.push("🚨 Do not enter any credentials, payment details, or personal information on this site.");
+    if (typosquatHits.length || brandHits.length) recs.push("🏢 This URL mimics a known brand but isn't on that brand's real domain — navigate to the service directly instead of clicking the link.");
+    if (!info.usesHttps) recs.push("🔐 The connection isn't encrypted (no HTTPS) — never submit sensitive data over it.");
+    if (risk.score < 35 && !typosquatHits.length && !brandHits.length) recs.push("✅ No major red flags detected, but always double-check the address bar before entering sensitive information.");
+    recs.push("🛡️ When in doubt, verify the link through an independent channel (official app, bookmark, or a quick search) rather than clicking through.");
+    return recs;
+  }
+  function runHeuristicScan(rawUrl) {
+    const u = safeParseUrl(rawUrl);
+    if (!u) return null;
+    const info = extractInfo(u, rawUrl);
+    const typosquatHits = typosquatCheck(info.hostname);
+    const brandHits = brandImpersonationCheck(info.hostname, rawUrl);
+    const risk = computeRiskScoreHeuristic(rawUrl, info, typosquatHits, brandHits);
+    const recommendations = generateRecommendations(risk, typosquatHits, brandHits, info);
+    const signals = domainTrustSignals(info);
+    const nearest = typosquatHits.length ? [] : closestBrandMatches(info.hostname, 5);
+    return { url: rawUrl, info, typosquatHits, brandHits, risk, recommendations, signals, nearest, models: null, knownBrands: Object.fromEntries(Object.entries(KNOWN_BRANDS).map(([k,v]) => [k, v])), source: "heuristic" };
+  }
+
+  function normalizeApiResult(data) {
+    const info = {
+      hostname: data.info.hostname, registeredDomain: data.info.registered_domain,
+      subdomainCount: data.info.subdomain_count, path: data.info.path, query: data.info.query,
+      isIpLiteral: data.info.is_ip_literal, isPunycode: data.info.is_punycode,
+      usesHttps: data.https_info.uses_https,
+    };
+    const typosquatHits = (data.typosquat_hits || []).map(h => ({ brand: h.brand, realDomain: h.real_domain, seenDomain: h.seen_domain, distance: h.distance }));
+    const brandHits = (data.brand_hits || []).map(h => ({ brand: h.brand, realDomain: h.real_domain, seenDomain: h.seen_domain }));
+    const nearest = (data.nearest_brands || []).map(h => ({ brand: h.brand, realDomain: h.real_domain, distance: h.distance }));
+    const signals = (data.trust_signals || []).map(s => [s.label, s.ok]);
+    return {
+      url: data.url, info, typosquatHits, brandHits, nearest, signals,
+      risk: { score: data.risk.score, band: data.risk.band, label: data.ensemble_label, explanation: data.risk.explanation },
+      recommendations: data.recommendations,
+      models: data.models,
+      knownBrands: data.known_brands || {},
+      source: "api",
+    };
+  }
+
+  async function runFullScan(rawUrl) {
+    if (apiOnline) {
+      try {
+        const base = state.apiEndpoint.replace(/\/$/, "");
+        const controller = new AbortController();
+        const t = setTimeout(() => controller.abort(), 8000);
+        const resp = await fetch(base + "/api/check_url", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ url: rawUrl, deep_scan: false }), signal: controller.signal,
+        });
+        clearTimeout(t);
+        if (resp.ok) return normalizeApiResult(await resp.json());
+      } catch (e) { /* fall through to heuristic */ }
+    }
+    return runHeuristicScan(rawUrl);
+  }
+
+  function renderScanResult(result) {
+    const out = $("#scan-output"); out.innerHTML = "";
+    if (!result) {
+      out.appendChild(el("div", { class: "panel note", text: "Couldn't parse that as a URL — check for typos." }));
+      return;
+    }
+    const risk = result.risk, color = verdictColor(risk.band);
+    const icon = risk.label === "SAFE" ? "✅" : "🚨";
+    const sourceNote = result.source === "api" ? "via the trained ML ensemble (api.py)" : "via the built-in heuristic (api.py not connected)";
+    const isFraud = risk.label !== "SAFE";
+
+    const stampPanel = el("div", { class: "panel center" });
+    stampPanel.innerHTML = `<div class="seal-row">${sealSvg(isFraud)}</div>
+      <div class="seal-caption">${isFraud ? "This site shows signs of phishing or fraud — treat it as unsafe." : "No strong fraud signals detected for this URL."}</div>`;
+    out.appendChild(stampPanel);
+
+    const verdictPanel = el("div", { class: "panel" });
+    verdictPanel.innerHTML = `<div class="two-col">
+      <div class="center">${gaugeHtml(risk.score)}<div class="gauge-label">Risk score</div></div>
+      <div>
+        <div class="verdict-box" style="background:${color}22;color:${color};border-color:${color};">${icon} ${risk.label} — ${risk.band}</div>
+        <p class="note" style="margin-top:8px;">Scanned: <code>${escapeHtml(result.url)}</code><br>${sourceNote}</p>
+      </div></div>`;
+    out.appendChild(verdictPanel);
+
+    if (result.models && result.models.length) {
+      const modelPanel = el("div", { class: "panel" });
+      modelPanel.innerHTML = `<div class="panel-title">🧠 Model-by-model comparison</div>
+        <div class="table-wrap"><table><thead><tr><th>Model</th><th>Prediction</th><th>Confidence</th></tr></thead>
+        <tbody>${result.models.map(m => `<tr><td>${escapeHtml(m.model)}</td><td>${escapeHtml(m.prediction)}</td><td>${m.confidence.toFixed(1)}%</td></tr>`).join("")}</tbody></table></div>`;
+      out.appendChild(modelPanel);
+    }
+
+    const explainPanel = el("div", { class: "panel" });
+    explainPanel.innerHTML = `<div class="panel-title">🔎 Why this score?</div>
+      <ul class="note">${risk.explanation.map(e => `<li>${escapeHtml(e)}</li>`).join("")}</ul>`;
+    out.appendChild(explainPanel);
+
+    const recPanel = el("div", { class: "panel" });
+    recPanel.innerHTML = `<div class="panel-title">🛡️ Security recommendations</div>
+      <ul class="note">${result.recommendations.map(r => `<li>${escapeHtml(r)}</li>`).join("")}</ul>`;
+    out.appendChild(recPanel);
+
+    const trustPanel = el("div", { class: "panel" });
+    const passed = result.signals.filter(s => s[1]).length;
+    trustPanel.innerHTML = `<div class="panel-title">✅ Domain trust signals</div>
+      <div class="note">${passed} of ${result.signals.length} checks passed.</div>
+      <div style="margin-top:6px;">${result.signals.map(([label, ok]) =>
+        `<span class="badge ${ok ? "badge-pass" : "badge-fail"}">${ok ? "✅" : "❌"} ${escapeHtml(label)}</span>`).join("")}</div>`;
+    out.appendChild(trustPanel);
+
+    const domainPanel = el("div", { class: "panel" });
+    let domainHtml = `<div class="panel-title">🌐 Domain / URL information</div>
+      <div class="details-grid">
+        <div class="details-row"><div class="details-label">Hostname</div><div class="details-value">${escapeHtml(result.info.hostname)}</div></div>
+        <div class="details-row"><div class="details-label">Registered domain</div><div class="details-value">${escapeHtml(result.info.registeredDomain)}</div></div>
+        <div class="details-row"><div class="details-label">Subdomains</div><div class="details-value">${result.info.subdomainCount}</div></div>
+        <div class="details-row"><div class="details-label">Path</div><div class="details-value">${escapeHtml(result.info.path)}</div></div>
+      </div>
+      <div class="panel-title" style="margin-top:14px;">🕵️ Typosquatting detection</div>
+      <div class="note">Compared against ${Object.keys(KNOWN_BRANDS).length} known brand domains by edit distance (flags anything within 2 edits).</div>`;
+    if (result.typosquatHits.length) {
+      domainHtml += result.typosquatHits.map(h =>
+        `<span class="badge badge-fail">⚠️ ${escapeHtml(h.seenDomain)} ≈ ${escapeHtml(h.realDomain)} (distance ${h.distance})</span>`).join("");
+    } else {
+      domainHtml += `<span class="badge badge-pass">✅ No typosquat matches</span>`;
+    }
+    domainPanel.innerHTML = domainHtml;
+    out.appendChild(domainPanel);
+
+    if (!result.typosquatHits.length && result.nearest && result.nearest.length) {
+      const evidence = el("details", { class: "evidence" });
+      evidence.innerHTML = `<summary>Show nearest brand domains checked (none flagged)</summary>
+        <div class="table-wrap"><table><thead><tr><th>Brand</th><th>Real domain</th><th>Edit distance</th></tr></thead>
+        <tbody>${result.nearest.map(n => `<tr><td>${escapeHtml(n.brand)}</td><td>${escapeHtml(n.realDomain)}</td><td>${n.distance}</td></tr>`).join("")}</tbody></table></div>`;
+      domainPanel.appendChild(evidence);
+    }
+
+    const brandPanel = el("div", { class: "panel" });
+    let brandHtml = `<div class="panel-title">🏢 Brand impersonation detection</div>`;
+    if (result.brandHits.length) {
+      brandHtml += result.brandHits.map(h =>
+        `<span class="badge badge-fail">⚠️ mentions "${escapeHtml(h.brand)}" but hosted on ${escapeHtml(h.seenDomain)}</span>`).join("");
+    } else {
+      brandHtml += `<span class="badge badge-pass">✅ No brand-impersonation patterns</span>`;
+    }
+    brandPanel.innerHTML = brandHtml;
+    const refDetails = el("details", { class: "evidence" });
+    const brandRows = Object.entries(KNOWN_BRANDS).sort();
+    refDetails.innerHTML = `<summary>📋 Reference brand list (${brandRows.length} monitored domains)</summary>
+      <div class="table-wrap"><table><thead><tr><th>Brand</th><th>Real domain</th></tr></thead>
+      <tbody>${brandRows.map(([b, d]) => `<tr><td>${escapeHtml(b)}</td><td>${escapeHtml(d)}</td></tr>`).join("")}</tbody></table></div>`;
+    brandPanel.appendChild(refDetails);
+    out.appendChild(brandPanel);
+  }
+
+  function renderSampleButtons() {
+    if (!$("#sample-safe")) return;
+    const safeWrap = $("#sample-safe"), susWrap = $("#sample-sus");
+    (SAMPLE_DATASET["Legitimate (illustrative)"] || []).slice(0, 3).forEach(u => {
+      const b = el("button", { class: "btn btn-ghost btn-sm", text: u.length > 34 ? u.slice(0, 31) + "..." : u });
+      b.addEventListener("click", () => { $("#url-input").value = u; });
+      safeWrap.appendChild(b);
+    });
+    (SAMPLE_DATASET["Phishing (illustrative)"] || []).slice(0, 4).forEach(u => {
+      const b = el("button", { class: "btn btn-ghost btn-sm", text: u.length > 34 ? u.slice(0, 31) + "..." : u });
+      b.addEventListener("click", () => { $("#url-input").value = u; });
+      susWrap.appendChild(b);
+    });
+  }
+
+  $("#scan-btn").addEventListener("click", async () => {
+    const raw = $("#url-input").value.trim();
+    if (!raw) { alert("Please enter a URL."); return; }
+    const btn = $("#scan-btn"); btn.disabled = true; btn.textContent = "Scanning…";
+    const result = await runFullScan(raw);
+    btn.disabled = false; btn.textContent = "🔍 Check website";
+    renderScanResult(result);
+    if (result) {
+      state.lastScan = result;
+      state.scanHistory.unshift({
+        time: new Date().toLocaleTimeString(), url: raw, verdict: result.risk.label, score: result.risk.score,
+      });
+      state.scanHistory = state.scanHistory.slice(0, 20);
+      saveState(); renderDashboard();
+    }
+  });
+
+  // =========================================================================
+  // FEEDBACK
+  // =========================================================================
+  let fbRating = 0;
+  const FB_KEY = "sentinelFeedbackQueue";
+  const fbLoad = () => { try { return JSON.parse(localStorage.getItem(FB_KEY) || "[]"); } catch (e) { return []; } };
+  const fbSave = q => { try { localStorage.setItem(FB_KEY, JSON.stringify(q)); } catch (e) {} };
+  async function fbPost(item) {
+    const base = state.apiEndpoint.replace(/\/$/, ""), ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), 8000);
+    try {
+      const r = await fetch(base + "/api/feedback", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(item), signal: ctl.signal });
+      return r.ok;
+    } catch (e) { return false; } finally { clearTimeout(timer); }
+  }
+  async function fbFlush() {
+    const q = fbLoad(); if (!q.length) return;
+    const left = []; for (const it of q) { if (!(await fbPost(it))) left.push(it); }
+    fbSave(left);
+  }
+  $$("#fb-stars button").forEach(b => b.addEventListener("click", () => {
+    fbRating = +b.dataset.n; $$("#fb-stars button").forEach(x => x.classList.toggle("on", +x.dataset.n <= fbRating));
+  }));
+  $("#fb-send").addEventListener("click", async () => {
+    const msg = $("#fb-msg").value.trim(), status = $("#fb-status");
+    if (!fbRating && !msg) { status.textContent = "Add a rating or a message first."; return; }
+    const item = { rating: fbRating, category: $("#fb-type").value, message: msg, contact: $("#fb-email").value.trim(), time: new Date().toISOString(), app: "web" };
+    status.textContent = "Sending…";
+    const ok = await fbPost(item);
+    if (!ok) fbSave([...fbLoad(), item]);
+    status.textContent = ok ? "Thanks! Your feedback was sent ✓" : "Saved in this browser. It will send automatically the next time the backend is reachable.";
+    fbRating = 0; $("#fb-msg").value = ""; $("#fb-email").value = ""; $$("#fb-stars button").forEach(x => x.classList.remove("on"));
+  });
+  fbFlush();
+
+  // =========================================================================
+  // DASHBOARD
+  // =========================================================================
+  function renderDashboard() {
+    $("#tb-scans").textContent = state.scanHistory.length;
+    $("#tb-pw").textContent = state.passwordHistory.length;
+
+    const scans = state.scanHistory, pw = state.passwordHistory;
+    const flagged = scans.filter(s => s.verdict === "NOT SAFE").length;
+    const avgRisk = scans.length ? Math.round(scans.reduce((a, s) => a + s.score, 0) / scans.length) : 0;
+    const stats = [
+      [scans.length, "URLs scanned"], [flagged, "Flagged as phishing"],
+      [pw.length, "Passwords checked"], [avgRisk + "/100", "Average risk score"],
+    ];
+    const grid = $("#dash-stats"); grid.innerHTML = "";
+    stats.forEach(([num, label]) => {
+      const card = el("div", { class: "stat-card" });
+      card.innerHTML = `<div class="stat-number">${num}</div><div class="stat-label">${label}</div>`;
+      grid.appendChild(card);
+    });
+
+    const scanBody = $("#dash-scans tbody"); scanBody.innerHTML = "";
+    $("#dash-scans-empty").style.display = scans.length ? "none" : "block";
+    scans.slice(0, 8).forEach(s => {
+      scanBody.appendChild(el("tr", {}, [
+        el("td", { text: s.time }), el("td", { text: s.url.length > 30 ? s.url.slice(0, 27) + "..." : s.url }),
+        el("td", { text: s.verdict }), el("td", { text: String(s.score) }),
+      ]));
+    });
+
+    const pwBody = $("#dash-pw tbody"); pwBody.innerHTML = "";
+    $("#dash-pw-empty").style.display = pw.length ? "none" : "block";
+    pw.slice(0, 8).forEach(p => {
+      pwBody.appendChild(el("tr", {}, [el("td", { text: p.time }), el("td", { text: p.verdict }), el("td", { text: p.score + "%" })]));
+    });
+  }
+
+  // =========================================================================
+  // SENTINEL AI ASSISTANT
+  // - Project-focused AI answers through api.py/OpenAI.
+  // - URLs pasted into chat are detected and scanned by Sentinel Shield first.
+  // - The URL verdict is generated from the scanner, not from an LLM guess.
+  // =========================================================================
+  let csvRows = null;
+  let chatEnabled = false;
+  const chatHistory = [];
+  const URL_RE = /(?:https?:\/\/|www\.)[^\s<>'"`]+/gi;
+
+  function normalizeChatUrl(raw) {
+    let value = String(raw || "").trim().replace(/[),.;!?]+$/g, "");
+    if (/^www\./i.test(value)) value = "https://" + value;
+    return value;
+  }
+
+  function extractUrls(text) {
+    const found = [];
+    for (const match of String(text || "").matchAll(URL_RE)) {
+      const url = normalizeChatUrl(match[0]);
+      try {
+        const parsed = new URL(url);
+        if (!/^https?:$/.test(parsed.protocol)) continue;
+        if (!found.includes(url)) found.push(url);
+      } catch (e) { /* ignore malformed URL-looking text */ }
+    }
+    return found.slice(0, 5);
+  }
+
+  function appendChatMsg(role, text, sourceLabel) {
+    const win = $("#chat-window");
+    const msg = el("div", { class: "chat-msg " + role });
+    msg.textContent = text;
+    if (sourceLabel) msg.appendChild(el("div", { class: "chat-source", text: sourceLabel }));
+    win.appendChild(msg);
+    win.scrollTop = win.scrollHeight;
+    return msg;
+  }
+
+  function appendUrlScanCard(result, questionUrl) {
+    const win = $("#chat-window");
+    const risk = result?.risk || {};
+    const score = Number(risk.score ?? 0);
+    const safe = risk.label === "SAFE";
+    const danger = score >= 70 || !safe;
+    const cls = safe ? "safe" : (score >= 70 ? "danger" : "warning");
+    const icon = safe ? "🟢" : (score >= 70 ? "🔴" : "🟠");
+
+    const domain = result?.info?.registeredDomain || result?.info?.hostname || "Unknown domain";
+    const hostname = result?.info?.hostname || domain;
+    const https = result?.info?.usesHttps ? "Yes" : "No";
+    const typos = result?.typosquatHits?.length || 0;
+    const brands = result?.brandHits?.length || 0;
+    const officialMatch = Object.values(result?.knownBrands || {}).some(d => d === domain);
+    const originality = officialMatch
+      ? "Known official domain match"
+      : (typos || brands ? "Brand/domain authenticity concern" : "Original ownership not independently verified");
+    const originalityClass = officialMatch && !typos && !brands ? "safe" : (typos || brands ? "danger" : "warning");
+
+    const card = el("div", { class: "chat-url-card " + cls });
+    card.innerHTML = `<div class="chat-url-head">
+      <div class="chat-url-verdict">${icon} ${escapeHtml(safe ? "SAFE — no major red flags detected" : (score >= 70 ? "NOT SAFE — high-risk signals detected" : "CAUTION — verification recommended"))}</div>
+      <div class="chat-url-score">${score}/100</div>
+    </div>
+    <div class="chat-url-domain"><b>URL:</b> <code>${escapeHtml(questionUrl || result.url)}</code></div>
+    <div class="chat-url-grid">
+      <div class="chat-url-detail"><b>Domain</b>${escapeHtml(domain)}</div>
+      <div class="chat-url-detail"><b>HTTPS</b>${https}</div>
+      <div class="chat-url-detail"><b>Authenticity</b>${escapeHtml(originality)}</div>
+      <div class="chat-url-detail"><b>Scanner</b>${result.source === "api" ? "ML ensemble + rules" : "Local heuristic"}</div>
+    </div>
+    <div class="chat-url-detail" style="margin-top:7px;border-color:color-mix(in srgb,var(--${originalityClass === "safe" ? "accent2" : (originalityClass === "danger" ? "accent4" : "warning")}) 45%,transparent)">
+      <b>Original-domain assessment</b>${escapeHtml(originality)}
+    </div>
+    ${typos || brands ? `<ul class="chat-url-reasons">${(result.typosquatHits || []).slice(0,3).map(h => `<li>Possible typosquat of ${escapeHtml(h.brand)} (${escapeHtml(h.realDomain)})</li>`).join("")}${(result.brandHits || []).slice(0,3).map(h => `<li>Brand name ${escapeHtml(h.brand)} appears on ${escapeHtml(h.seenDomain)}, not ${escapeHtml(h.realDomain)}</li>`).join("")}</ul>` : `<ul class="chat-url-reasons">${(risk.explanation || []).slice(0,4).map(x => `<li>${escapeHtml(x)}</li>`).join("")}</ul>`}
+    <div class="chat-url-actions"><button class="btn chat-open-scan">Open full scan</button></div>
+    <div class="chat-url-foot">A readable URL is not proof of ownership. For payments or logins, verify the domain through an independent source.</div>`;
+
+    card.querySelector(".chat-open-scan").addEventListener("click", () => {
+      $("[data-tab='phishing']")?.click();
+      $("#url-input").value = result.url;
+      $("#scan-btn").click();
+      setTimeout(() => $("#scan-output")?.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
+    });
+    win.appendChild(card);
+    win.scrollTop = win.scrollHeight;
+    return { safe, score, domain, originality, officialMatch };
+  }
+
+  function sampleCsvExamplesForClass(wantClass) {
+    if (!csvRows || !state.csvSummary || !state.csvSummary.statusCol) return [];
+    const col = state.csvSummary.statusCol, urlCol = state.csvSummary.urlCol;
+    if (!urlCol) return [];
+    return csvRows.filter(r => String(r[col] || "").toLowerCase().includes(wantClass === "phishing" ? "phish" : "legit"))
+      .slice(0, 5).map(r => r[urlCol]);
+  }
+
+  function kbAnswer(q) {
+    const t = q.toLowerCase().replace(/[^a-z0-9@.+\-\/ ]/g, " ").replace(/\s+/g, " ").trim();
+    if (/^(h+i+|hello+|hey+|hii+|yo|namaste|good (morning|afternoon|evening))( there| claude| bot)?$/.test(t)) return "Hello! 👋 I'm Sentinel AI. Ask me about URL scans, the ML model, the code or the libraries — or paste a link to check it.";
+    const words = new Set(t.split(" ")); let best = null, top = 0;
+    for (const [kws, ans] of APP_DATA.KB || []) {
+      let s = 0;
+      for (const k of kws) { const hit = k.includes(" ") || k.length > 4 ? t.includes(k) : words.has(k); if (hit) s += k.length > 4 ? 3 : 2; }
+      if (s > top) { top = s; best = ans; }
+    }
+    return top >= 2 ? best : null;
+  }
+  function answerLocally(question) {
+    return kbAnswer(question) || answerLocallyBase(question);
+  }
+  function answerLocallyBase(question) {
+    const q = question.toLowerCase();
+    if (/(how many|row count|dataset size|class balance|columns|what.?s in.*csv)/.test(q)) {
+      if (!state.csvSummary) return "No CSV is loaded yet — upload your phishing.csv above and I can give you real stats (row count, class balance, columns).";
+      const s = state.csvSummary;
+      return `Your loaded dataset has ${s.rows} rows and these columns: ${s.columns.join(", ")}. Class counts: ${Object.entries(s.counts).map(([k, v]) => `${k}: ${v}`).join(", ")}.`;
+    }
+    if (/(example|sample).*(phish|malicious|bad)/.test(q)) {
+      const examples = (csvRows && state.csvSummary) ? sampleCsvExamplesForClass("phishing") : [];
+      const list = examples.length ? examples : SAMPLE_DATASET["Phishing (illustrative)"].slice(0, 5);
+      return "A few phishing-style examples:\n" + list.join("\n");
+    }
+    if (/(example|sample).*(legit|safe|good)/.test(q)) {
+      const examples = (csvRows && state.csvSummary) ? sampleCsvExamplesForClass("legitimate") : [];
+      const list = examples.length ? examples : SAMPLE_DATASET["Legitimate (illustrative)"].slice(0, 5);
+      return "A few legitimate examples:\n" + list.join("\n");
+    }
+    if (/(risk score|how.*calculat|how.*work)/.test(q)) {
+      return apiOnline
+        ? "When api.py is connected, Sentinel Shield combines Random Forest, Logistic Regression and Gradient Boosting predictions with rule-based signals such as typosquats, brand impersonation, HTTPS and suspicious URL structure."
+        : "Without api.py connected, Sentinel Shield uses a browser-side heuristic based on signals such as raw IP hosts, URL shorteners, suspicious keywords, @ symbols, redirect patterns, hyphens, HTTPS, punycode, long hostnames/URLs, typosquats and brand impersonation."
+    }
+    if (/(why|risky|last scan|my url)/.test(q) && state.lastScan) {
+      return `Your last scan of ${state.lastScan.url} came back ${state.lastScan.risk.label} (${state.lastScan.risk.score}/100). Reasons: ${state.lastScan.risk.explanation.join("; ")}.`;
+    }
+    if (/password/.test(q)) {
+      return "Sentinel Shield checks password strength using rules around length, common/breached passwords, dictionary words, username reuse, repeated characters and character variety. For real accounts, use a unique long password or passphrase and a password manager."
+    }
+    if (/(api|backend|connect|ml model|machine learning|random forest|logistic|gradient)/.test(q)) {
+      return apiOnline
+        ? "api.py is connected. URL checks can use the trained ML ensemble plus the server-side domain and brand analysis, and the chatbot can use your configured OpenAI model."
+        : "api.py is not connected right now. The interface still works with the built-in browser heuristic. Start `python api.py` with phishing.csv beside it to enable the backend ML ensemble and AI proxy."
+    }
+    if (/(feature|what can you|what does sentinel|capabilit|project)/.test(q)) {
+      return "Sentinel Shield includes URL phishing analysis, ML ensemble predictions, typosquat and brand-impersonation detection, domain trust signals, password strength checking, phishing CSV analysis, an AI assistant and a Chrome extension for automatic page checks."
+    }
+    if (/(who are you|what can you do|help)/.test(q)) {
+      return "I'm the Sentinel Shield project assistant. Ask me about the scanner, ML model, password checker, CSV dataset, API, Chrome extension — or paste a URL and I'll scan it."
+    }
+    return "I'm focused on Sentinel Shield. Ask about its URL scanner, ML model, password checker, dataset, API or Chrome extension. You can also paste any http(s) URL here and I'll run a security assessment."
+  }
+
+  async function scanChatUrls(urls) {
+    const results = [];
+    for (const url of urls) {
+      const result = await runFullScan(url);
+      if (result) {
+        results.push({ url, result, assessment: appendUrlScanCard(result, url) });
+      }
+    }
+    return results;
+  }
+
+  function buildChatContext(urlResults) {
+    return {
+      csv_summary: state.csvSummary,
+      last_scan: state.lastScan ? {
+        url: state.lastScan.url, label: state.lastScan.risk.label,
+        score: state.lastScan.risk.score, explanation: state.lastScan.risk.explanation,
+      } : null,
+      chat_url_scans: urlResults.map(x => ({
+        url: x.url,
+        label: x.result.risk.label,
+        score: x.result.risk.score,
+        band: x.result.risk.band,
+        domain: x.result.info?.registeredDomain || x.result.info?.hostname,
+        https: !!x.result.info?.usesHttps,
+        typosquat_hits: x.result.typosquatHits || [],
+        brand_hits: x.result.brandHits || [],
+        explanation: x.result.risk.explanation || [],
+        source: x.result.source,
+      })),
+    };
+  }
+
+  async function checkChatStatus() {
+    const titleEl = $("#chat-status-title"), subEl = $("#chat-status-sub");
+    try {
+      const base = state.apiEndpoint.replace(/\/$/, "");
+      const controller = new AbortController();
+      const t = setTimeout(() => controller.abort(), 2500);
+      const resp = await fetch(base + "/api/chat/status", { signal: controller.signal });
+      clearTimeout(t);
+      if (resp.ok) {
+        const data = await resp.json();
+        chatEnabled = !!data.enabled;
+        if (chatEnabled) {
+          titleEl.textContent = `AI online · ${data.model}`;
+          subEl.textContent = "Project-focused answers are powered by your api.py/OpenAI connection. URL verdicts are produced by the Sentinel Shield scanner before the AI responds.";
+        } else {
+          titleEl.textContent = "Local project assistant active";
+          subEl.textContent = "api.py is reachable but OpenAI is not configured. Project Q&A and URL scanning still work through the built-in assistant and scanner.";
+        }
+        return;
+      }
+    } catch (e) { /* fall through */ }
+    chatEnabled = false;
+    titleEl.textContent = "Local project assistant active";
+    subEl.textContent = "api.py is not reachable. Project Q&A and URL scanning still work locally; start python api.py to enable the AI backend and ML model."
+  }
+
+  async function sendChatMessage(forcedText) {
+    const input = $("#chat-input");
+    const text = String(forcedText ?? input.value).trim();
+    if (!text) return;
+    input.value = "";
+    appendChatMsg("user", text);
+    chatHistory.push({ role: "user", content: text });
+
+    const urls = extractUrls(text);
+    let urlResults = [];
+    if (urls.length) {
+      appendChatMsg("assistant", `🔎 I found ${urls.length} URL${urls.length === 1 ? "" : "s"} in your message. I'll scan ${urls.length === 1 ? "it" : "them"} before answering.`, "Sentinel Shield URL scanner");
+      urlResults = await scanChatUrls(urls);
+      if (!urlResults.length) appendChatMsg("assistant", "I found a URL-like value, but it could not be parsed by the scanner.", "Scanner");
+    }
+
+    const thinking = appendChatMsg("assistant", "Thinking…");
+    let aiError = null;
+    if (chatEnabled) {
+      try {
+        const base = state.apiEndpoint.replace(/\/$/, "");
+        const resp = await fetch(base + "/api/chat", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            messages: chatHistory,
+            context: buildChatContext(urlResults),
+          }),
+        });
+        const data = await resp.json();
+        if (resp.ok && data.reply) {
+          thinking.textContent = data.reply;
+          thinking.appendChild(el("div", { class: "chat-source", text: "via Sentinel AI · URL scan data supplied separately" }));
+          chatHistory.push({ role: "assistant", content: data.reply });
+          $("#chat-window").scrollTop = $("#chat-window").scrollHeight;
+          return;
+        }
+        aiError = data.error || ("HTTP " + resp.status);
+      } catch (e) { aiError = "Could not reach api.py (" + e.message + ")"; }
+    }
+
+    const local = urls.length && urlResults.length
+      ? `I scanned ${urlResults.length} URL${urlResults.length === 1 ? "" : "s"} above. The cards contain the security verdict. For project questions, the local assistant can explain Sentinel Shield's built-in features, but detailed AI answers require the backend connection.`
+      : answerLocally(text);
+    thinking.textContent = aiError ? ("⚠️ The AI request failed: " + aiError + "\n\n" + local) : local;
+    thinking.style.whiteSpace = "pre-wrap";
+    thinking.appendChild(el("div", { class: "chat-source", text: "via local Sentinel Shield assistant" }));
+    chatHistory.push({ role: "assistant", content: local });
+    $("#chat-window").scrollTop = $("#chat-window").scrollHeight;
+  }
+
+  $("#chat-send").addEventListener("click", () => sendChatMessage());
+  $("#chat-input").addEventListener("keydown", e => { if (e.key === "Enter") sendChatMessage(); });
+  document.querySelectorAll(".quick-chat").forEach(btn => btn.addEventListener("click", () => sendChatMessage(btn.dataset.chatPrompt)));
+
+  // ---- CSV upload/parse ----
+  $("#csv-file").addEventListener("change", () => {
+    const file = $("#csv-file").files[0];
+    if (!file || typeof Papa === "undefined") return;
+    $("#csv-summary").textContent = "Parsing…";
+    Papa.parse(file, {
+      header: true, skipEmptyLines: true,
+      complete: (res) => {
+        const rows = res.data;
+        csvRows = rows;
+        const columns = res.meta.fields || [];
+        const statusCol = columns.find(c => /status|type|label|class/i.test(c)) || null;
+        const urlCol = columns.find(c => /url|link/i.test(c)) || null;
+        const counts = {};
+        if (statusCol) rows.forEach(r => { const v = String(r[statusCol] || "unknown"); counts[v] = (counts[v] || 0) + 1; });
+        state.csvSummary = { rows: rows.length, columns, statusCol, urlCol, counts };
+        saveState();
+        $("#csv-summary").innerHTML = `✅ Loaded <b>${rows.length}</b> rows. Columns: ${columns.join(", ")}.` +
+          (statusCol ? ` Class counts: ${Object.entries(counts).map(([k, v]) => `${k}: ${v}`).join(", ")}.` : " (no status/label column detected — stats will be limited)");
+      },
+      error: (err) => { $("#csv-summary").textContent = "Could not parse that CSV: " + err.message; },
+    });
+  });
+
+  // =========================================================================
+  // EXTENSION — zip download only (no source code shown in the UI)
+  // =========================================================================
+  $("#ext-download").addEventListener("click", async () => {
+    const status = $("#ext-download-status");
+    if (typeof JSZip === "undefined") { status.textContent = "Zip library failed to load — try refreshing."; return; }
+    status.textContent = "Building zip…";
+    try {
+      const zip = new JSZip();
+      Object.entries(EXTENSION_FILES).forEach(([name, content]) => zip.file(name, content));
+      const blob = await zip.generateAsync({ type: "blob" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = "sentinel_shield_extension.zip";
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      status.textContent = "✅ Downloaded.";
+    } catch (e) {
+      status.textContent = "Couldn't build the zip: " + (e.message || e);
+    }
+  });
+
+  // =========================================================================
+  // Init
+  // =========================================================================
+  renderSampleButtons();
+  renderPasswordHistory();
+  renderDashboard();
+  testApiConnection();
+  checkChatStatus();
+  appendChatMsg("system-note", "Ask me about the risk score, your last scan, or an uploaded CSV.");
+})();
+</script></body></html>

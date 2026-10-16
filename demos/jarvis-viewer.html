@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JARVIS v7 / v8 — Interactive Source Demo</title>
+<style>
+  :root {
+    --bg: #07090d; --panel: #0d1117; --line: rgba(255,255,255,.08);
+    --text: #e6edf3; --dim: #8b949e; --cyan: #38bdf8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+  header {
+    padding: 26px 6vw 20px; border-bottom: 1px solid var(--line);
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+  }
+  .brand-g { display:flex; align-items:center; gap:12px; }
+  .brand-mark { width:40px; height:40px; border-radius:10px; background:linear-gradient(135deg,#16222f,#0a0f16); border:1px solid rgba(56,189,248,.3); display:grid; place-items:center; font-size:20px; }
+  h1 { font-size: 26px; letter-spacing: -.5px; }
+  .sub { color: var(--dim); font-size: 13.5px; margin-top: 3px; max-width: 720px; line-height: 1.55; }
+  .version-tabs { display:flex; gap:8px; }
+  .version-tabs button {
+    background: rgba(255,255,255,.04); color: var(--dim); border: 1px solid var(--line);
+    padding: 8px 18px; border-radius: 999px; cursor: pointer; font-size: 13px; font-weight: 600; transition: .2s;
+  }
+  .version-tabs button.active { color: #fff; border-color: var(--cyan); background: rgba(56,189,248,.12); }
+  .cards { padding: 22px 6vw; display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:14px; }
+  .card { background: var(--panel); border:1px solid var(--line); border-radius:14px; padding:16px 18px; }
+  .card .k { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); margin-bottom:6px; }
+  .card .v { font-size: 15px; font-weight: 600; }
+  .wrap { padding: 0 6vw 40px; }
+  .panel { background: var(--panel); border:1px solid var(--line); border-radius:16px; overflow:hidden; }
+  .panel-bar { display:flex; justify-content:space-between; align-items:center; padding:12px 18px; border-bottom:1px solid var(--line); background: rgba(255,255,255,.02); }
+  .fname { font-family: Consolas, monospace; font-size: 13px; color: var(--cyan); }
+  .hint { font-size: 12px; color: var(--dim); }
+  pre { font-family: Consolas, 'Courier New', monospace; font-size: 12.8px; line-height: 1.55; max-height: 62vh; overflow: auto; display:flex; }
+  pre .gutter { padding: 14px 14px 20px 18px; text-align:right; color:#3d4956; user-select:none; white-space:pre; background: rgba(255,255,255,.015); border-right:1px solid var(--line); }
+  pre .code { padding: 14px 24px 20px; white-space:pre; }
+  .loading { padding: 80px; text-align:center; color: var(--dim); }
+  .err { color:#f87171; }
+  footer { padding: 18px 6vw; color: var(--dim); font-size: 12px; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <div class="brand-g">
+      <div class="brand-mark">🖥️</div>
+      <h1>JARVIS <span id="vLabel">v7</span> — Project Demo</h1>
+    </div>
+    <p class="sub">
+      AI-powered touchless scientific visualization system: real OpenGL 3D rendering, MediaPipe hand
+      tracking with gesture control, holographic HUD, exploded anatomical &amp; molecular views, a virtual
+      chemistry lab, and an optional natural-language voice brain. Demo runs on the actual project source code.
+    </p>
+  </div>
+  <div class="version-tabs">
+    <button data-v="v7" class="active" id="tabV7">JARVIS v7</button>
+    <button data-v="v8" id="tabV8">JARVIS v8</button>
+  </div>
+</header>
+
+<div class="cards">
+  <div class="card"><div class="k">Engine</div><div class="v">OpenGL + GLFW render core</div></div>
+  <div class="card"><div class="k">Input</div><div class="v">MediaPipe hand &amp; face gestures</div></div>
+  <div class="card"><div class="k">Library</div><div class="v">Chemistry · Biology · Space</div></div>
+  <div class="card"><div class="k">Extras</div><div class="v">Voice AI brain (opt-in)</div></div>
+</div>
+
+<div class="wrap">
+  <div class="panel">
+    <div class="panel-bar">
+      <span class="fname" id="fileName">jarvis_v7.py</span>
+      <span class="hint">Live source read directly from the project files</span>
+    </div>
+    <div id="content"><div class="loading">Loading JARVIS source…</div></div>
+  </div>
+</div>
+
+<footer>
+  Sent from <strong>Younglancers</strong> · Full file also available: <a id="rawLink" href="jarvis_v7.py" target="_blank" rel="noopener" style="color:var(--cyan)">download jarvis file</a>
+</footer>
+
+<script>
+  (function () {
+    var current = 'v7';
+    var content = document.getElementById('content');
+
+    function esc(s) {
+      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function render(code, file) {
+      var lines = code.split(/\r?\n/);
+      var gut = [];
+      var body = [];
+      for (var i = 0; i < lines.length; i++) {
+        gut.push(i + 1);
+        body.push(esc(lines[i]) || ' ');
+      }
+      content.innerHTML =
+        '<pre><span class="gutter">' + gut.join('\n') + '</span><span class="code">' + body.join('\n') + '</span></pre>';
+      document.title = 'JARVIS ' + current + ' — ' + file;
+    }
+
+    function load(v) {
+      var file = 'jarvis_' + v + '.py';
+      document.getElementById('fileName').textContent = file;
+      document.getElementById('vLabel').textContent = v.toUpperCase();
+      document.getElementById('rawLink').href = file;
+      document.getElementById('rawLink').textContent = 'download ' + file;
+      content.innerHTML = '<div class="loading">Loading JARVIS ' + v + ' source…</div>';
+      fetch(file, { cache: 'no-cache' })
+        .then(function (r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          return r.text();
+        })
+        .then(function (txt) { render(txt, file); })
+        .catch(function (e) {
+          content.innerHTML =
+            '<div class="loading err">Could not load source (' + esc(e.message) + ').<br>If opened via file://, serve the folder with `npm run dev` instead.</div>';
+        });
+    }
+
+    document.getElementById('tabV7').addEventListener('click', function () { switchTo('v7', this); });
+    document.getElementById('tabV8').addEventListener('click', function () { switchTo('v8', this); });
+    function switchTo(v, btn) {
+      if (current === v) return;
+      current = v;
+      document.querySelectorAll('.version-tabs button').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      load(v);
+    }
+
+    var requested = new URLSearchParams(location.search).get('version');
+    if (requested === 'v8' || requested === 'v7') {
+      current = requested;
+      document.querySelectorAll('.version-tabs button').forEach(function (b) {
+        b.classList.toggle('active', b.getAttribute('data-v') === requested);
+      });
+    }
+    load(current);
+  })();
+</script>
+</body>
+</html>

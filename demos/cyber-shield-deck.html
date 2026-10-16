@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cyber Shield — Live Deck Demo</title>
+<style>
+  :root {
+    --bg: #06080c; --panel: #0b0f16; --line: rgba(255,255,255,.08);
+    --cyan: #38bdf8; --dim: #8b949e;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:#e8edf3; font-family:'Segoe UI', system-ui, -apple-system, sans-serif; min-height:100vh; display:flex; flex-direction:column; }
+  header { display:flex; justify-content:space-between; align-items:center; padding:18px 5vw; border-bottom:1px solid var(--line); flex-wrap:wrap; gap:10px; }
+  .brand { display:flex; align-items:center; gap:10px; font-weight:700; font-size:15px; }
+  .brand .mark { width:30px; height:30px; border-radius:8px; background:linear-gradient(135deg,#10202e,#080d13); border:1px solid rgba(56,189,248,.3); display:grid; place-items:center; }
+  header .note { font-size:12px; color:var(--dim); font-family:Consolas, monospace; }
+  main { flex:1; display:grid; place-items:center; padding:24px 4vw; }
+  .slide {
+    width:100%; max-width:960px; background:var(--panel); border:1px solid var(--line);
+    border-radius:20px; padding:52px 56px 44px; position:relative; overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,.55);
+  }
+  .slide:before { content:""; position:absolute; top:-120px; right:-120px; width:300px; height:300px; border-radius:50%; background:var(--cyan); opacity:.07; filter:blur(70px); pointer-events:none; }
+  .kicker { font-family:Consolas, monospace; font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--cyan); margin-bottom:14px; }
+  .slide h2 { font-size:clamp(24px,3.5vw,36px); line-height:1.2; margin-bottom:10px; }
+  .slide .lead { color:var(--dim); font-size:15.5px; line-height:1.6; max-width:640px; }
+  .items { display:grid; gap:12px; margin-top:30px; }
+  .item { background:rgba(255,255,255,.025); border:1px solid rgba(255,255,255,.06); border-radius:12px; padding:14px 18px; }
+  .item b { display:block; font-size:14.5px; margin-bottom:3px; }
+  .item span { color:var(--dim); font-size:13.5px; line-height:1.5; }
+  .stat-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; margin-top:28px; }
+  .stat { background:rgba(56,189,248,.05); border:1px solid rgba(56,189,248,.15); border-radius:10px; padding:12px 16px; }
+  .stat .k { font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--dim); font-family:Consolas, monospace; }
+  .stat .v { font-size:16px; font-weight:700; margin-top:3px; }
+  nav { display:flex; justify-content:space-between; align-items:center; padding:16px 5vw 22px; gap:14px; }
+  .ctl { display:flex; gap:10px; align-items:center; }
+  button.nav-btn { background:rgba(255,255,255,.05); color:#e8edf3; border:1px solid var(--line); padding:9px 20px; border-radius:999px; cursor:pointer; font-size:13.5px; font-weight:600; transition:.2s; }
+  button.nav-btn:hover { border-color:var(--cyan); background:rgba(56,189,248,.1); }
+  .count { font-family:Consolas, monospace; font-size:12.5px; color:var(--dim); }
+  .dots { display:flex; gap:6px; flex-wrap:wrap; }
+  .dots button { width:8px; height:8px; border-radius:4px; border:none; background:rgba(255,255,255,.18); cursor:pointer; padding:0; transition:.25s; }
+  .dots button.on { background:var(--cyan); width:26px; }
+  .fade { animation: fade .35s ease; }
+  @keyframes fade { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+  @media (max-width:640px){ .slide { padding:30px 24px; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><div class="mark">🛡️</div>Cyber Shield · Digital Safety Platform</div>
+  <div class="note">Real investor/school deck — Younglancers presentation work</div>
+</header>
+
+<main><div class="slide" id="slideBox"></div></main>
+
+<nav>
+  <div class="ctl">
+    <button class="nav-btn" id="prev">← Prev</button>
+    <span class="count" id="count"></span>
+    <button class="nav-btn" id="next">Next →</button>
+  </div>
+  <div class="dots" id="dots"></div>
+</nav>
+
+<script>
+var SLIDES = [
+  { k: "Cyber Shield · Digital Safety", t: "Welcome to Cyber Shield", s: "Check. Verify. Stay Safe.", d: "A security-focused platform for analyzing websites, detecting suspicious links, and helping people make safer digital decisions." },
+  { k: "The Aim", t: "Make every click a safer decision", s: "Confidence through layered checks instead of guesswork.", items: [ { b: "Verify", d: "Help users verify a website before sharing information." }, { b: "Understand", d: "Turn complex security signals into clear, understandable guidance." }, { b: "Protect", d: "Build confidence through layered checks instead of guesswork." } ] },
+  { k: "A Moment That Matters", t: "Pause before you pay", s: "A familiar-looking payment or login page deserves one more step.", items: [ { b: "Message", d: "A familiar-looking payment or login link arrives." }, { b: "Analyze", d: "Paste the URL and review domain, HTTPS, redirects, reputation, and impersonation signals." }, { b: "Understand", d: "Check the risk verdict and ask what each warning means." }, { b: "Decide", d: "Proceed only when evidence supports trust; otherwise, leave the page." } ] },
+  { k: "The Problem", t: "Why website trust is difficult", s: "One careless click can expose personal information or credentials.", items: [ { b: "Phishing pages imitate familiar brands", d: "Fake sites copy login screens that you already trust." }, { b: "Suspicious URLs hide tricks", d: "Unusual characters, redirects, and deceptive domains." }, { b: "Users need a fast, understandable answer", d: "A clear verdict before they act." } ] },
+  { k: "The Platform", t: "One platform, multiple layers of protection", s: "Signals build toward one clear verdict.", items: [ { b: "01 · URL and domain analysis" }, { b: "02 · HTTPS and security-signal checks" }, { b: "03 · Suspicious patterns, typosquatting, and brand impersonation" }, { b: "04 · Machine-learning analysis for additional risk signals" } ] },
+  { k: "Cyber Shield · Website Analysis", t: "Website legitimacy analysis — signals become a verdict", s: "Key findings in one readable overview.", stats: [["HTTPS", "Signal found"], ["Redirects", "Review path"], ["Domain", "Check structure"]] },
+  { k: "Password Analysis", t: "Weak habits show up early", s: "The analysis runs locally in the browser to keep it close to the user.", items: [ { b: "Password Scorecard", d: "Overall resilience, strength measured, length and variety checked — all computed on-device." } ] },
+  { k: "Guidance in the Moment", t: "AI guidance + protection while browsing", s: "Technical findings become clear next steps.", items: [ { b: "Cyber Shield AI", d: "\u201cWhy does this URL look suspicious?\u201d The assistant explains the warning and translates the finding into a next step." }, { b: "Browser Experience", d: "Check pages, show a security badge, and warn when something looks risky." } ] },
+  { k: "The System", t: "A modular technology architecture", s: "Separate layers make the decision process easier to extend and understand.", items: [ { b: "Interface layer", d: "HTML, CSS, and JavaScript." }, { b: "Security analysis layer", d: "URL/domain checks, phishing detection, password analysis, and AI assistance." }, { b: "ML signal layer", d: "Machine-learning methods add another signal to the decision process." }, { b: "Chrome Extension layer", d: "Brings protection closer to everyday browsing." } ] },
+  { k: "The Takeaway", t: "Cyber Shield: check before you trust", s: "Detect. Verify. Understand. Protect.", items: [ { b: "Layered guidance", d: "Verify the URL before entering personal information; understand the signal behind every warning." }, { b: "One step at a time", d: "Choose safer digital behavior, one click at a time." } ] }
+];
+
+var i = 0;
+var box = document.getElementById('slideBox');
+var count = document.getElementById('count');
+var dots = document.getElementById('dots');
+
+SLIDES.forEach(function (_, n) {
+  var b = document.createElement('button');
+  b.addEventListener('click', function () { go(n); });
+  dots.appendChild(b);
+});
+
+function go(n) {
+  i = (n + SLIDES.length) % SLIDES.length;
+  var s = SLIDES[i];
+  var html = '<div class="kicker">' + esc(s.k) + '</div><h2>' + esc(s.t) + '</h2><p class="lead">' + esc(s.s) + '</p>';
+  if (s.items) html += '<div class="items">' + s.items.map(function (it) {
+    return '<div class="item"><b>' + esc(it.b) + '</b>' + (it.d ? '<span>' + esc(it.d) + '</span>' : '') + '</div>';
+  }).join('') + '</div>';
+  if (s.stats) html += '<div class="stat-row">' + s.stats.map(function (st) {
+    return '<div class="stat"><div class="k">' + esc(st[0]) + '</div><div class="v">' + esc(st[1]) + '</div></div>';
+  }).join('') + '</div>';
+  box.innerHTML = html;
+  box.classList.remove('fade'); void box.offsetWidth; box.classList.add('fade');
+  count.textContent = 'Slide ' + (i + 1) + ' / ' + SLIDES.length;
+  Array.prototype.forEach.call(dots.children, function (d, n2) { d.className = n2 === i ? 'on' : ''; });
+}
+
+function esc(x) { return ('' + x).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+document.getElementById('prev').onclick = function () { go(i - 1); };
+document.getElementById('next').onclick = function () { go(i + 1); };
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'ArrowRight' || e.key === ' ') go(i + 1);
+  if (e.key === 'ArrowLeft') go(i - 1);
+});
+go(0);
+</script>
+</body>
+</html>

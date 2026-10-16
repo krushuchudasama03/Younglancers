@@ -1,0 +1,21 @@
+{
+  "name": "younglancers",
+  "version": "2.0.0",
+  "private": true,
+  "description": "PixelForge — Bespoke Websites, Master Pitch Decks & Software",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve ."
+  },
+  "keywords": [
+    "pixelforge",
+    "younglancers",
+    "portfolio",
+    "presentations",
+    "websites",
+    "sentinel-shield",
+    "jarvis"
+  ],
+  "author": "Krushnrajsinh Chudasama",
+  "license": "MIT"
+}
